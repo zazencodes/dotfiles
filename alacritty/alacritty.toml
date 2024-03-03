@@ -39,6 +39,10 @@ y = 0
 columns = 250
 lines = 90
 
+[window.position]
+x = 800
+y = 150
+
 # themes:
 # - https://github.com/alacritty/alacritty-theme
 
