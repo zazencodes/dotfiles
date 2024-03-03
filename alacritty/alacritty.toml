@@ -1,0 +1,57 @@
+
+import = ["/Users/alex/.config/alacritty/themes/themes/dracula.toml"]
+
+[font]
+size = 15
+
+[font.normal]
+family = "DejaVuSansM Nerd Font Mono"
+# style = "Regular"
+
+[font.bold]
+family = "DejaVuSansM Nerd Font Mono"
+# style = "Bold"
+
+[font.italic]
+family = "DejaVuSansM Nerd Font Mono"
+# style = "Italic"
+
+# [font.normal]
+# family = "UbuntuMono Nerd Font"
+# family = "Source Code Pro"
+# family = "MesloLGS NF"
+
+[keyboard]
+bindings = [
+  { key = "Right", mods = "Alt", chars = "\u001BF" },
+  { key = "Left",  mods = "Alt", chars = "\u001BB" },
+  { key = "f",     mods = "Alt", action = "ToggleSimpleFullscreen" },
+]
+
+[window]
+# startup_mode = "SimpleFullscreen"
+
+[window.padding]
+x = 5
+y = 0
+
+[window.dimensions]
+columns = 250
+lines = 90
+
+# themes:
+# - https://github.com/alacritty/alacritty-theme
+
+# fonts:
+# - preview: https://www.nerdfonts.com/font-downloads
+# - install: https://gist.github.com/davidteren/898f2dcccd42d9f8680ec69a3a5d350e
+
+# config examples:
+# - https://gitlab.com/evertiro/dotfiles/blob/master/.config/alacritty/alacritty.yml
+# - https://fuchsia.googlesource.com/third_party/github.com/alacritty/alacritty/+/refs/tags/v0.10.0-rc2/alacritty.yml
+
+# fix bold rendering text by default on mac (run once)
+# ```bash
+# defaults write org.alacritty AppleFontSmoothing -int 0
+# ```
+
