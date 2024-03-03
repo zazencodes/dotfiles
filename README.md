@@ -13,6 +13,7 @@ ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ## Scripts
 ```bash
 ln -s ~/dotfiles/bin/on ~/bin/on
+ln -s ~/dotfiles/bin/og ~/bin/og
 ```
 
 
