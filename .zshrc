@@ -63,6 +63,13 @@ alias leet="nvim leetcode.nvim"
 # Variables
 export JUPYTER_NOTEBOOK_STYLE='from IPython.display import HTML;HTML("<style>div.text_cell_render{font-size:130%;padding-top:50px;padding-bottom:50px}</style>")'
 
+# Dir nav
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
 # Zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git colored-man-pages colorize python macos zsh-syntax-highlighting)
