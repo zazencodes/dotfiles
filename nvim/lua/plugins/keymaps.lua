@@ -58,7 +58,7 @@ vim.keymap.set('n', '<leader>gp', ":lua require('goto-preview').close_all_win()<
 -- ))) # inside vim now, format note as template
 -- ))) <leader>on
 -- ))) # add tag, e.g. fact / blog / video / etc..
--- ))) # add hubs, e.g. [[hubs/python]], [[hubs/machine-learning]], etc...
+-- ))) # add hubs, e.g. [[python]], [[machine-learning]], etc...
 --
 -- >>> # review notes in inbox
 -- >>> or
@@ -72,18 +72,18 @@ vim.keymap.set('n', '<leader>gp', ":lua require('goto-preview').close_all_win()<
 vim.keymap.set("n", "<leader>oo", ":cd /Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes<cr>")
 --
 -- convert note to template and remove leading white space
-vim.keymap.set("n", "<leader>on", ":ObsidianTemplate fact<cr> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<cr>")
+vim.keymap.set("n", "<leader>on", ":ObsidianTemplate note<cr> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<cr>")
 -- strip date from note title and replace dashes with spaces
 -- must have cursor on title
 vim.keymap.set("n", "<leader>of", ":s/\\(# \\)[^_]*_/\\1/ | s/-/ /g<cr>")
 --
 -- search for files in full vault
-vim.keymap.set("n", "<leader>os", ":Telescope find_files search_dirs={\"/Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes\"}<cr>")
-vim.keymap.set("n", "<leader>oz", ":Telescope live_grep search_dirs={\"/Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes\"}<cr>")
+vim.keymap.set("n", "<leader>os", ":Telescope find_files search_dirs={\"/Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/notes\"}<cr>")
+vim.keymap.set("n", "<leader>oz", ":Telescope live_grep search_dirs={\"/Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/notes\"}<cr>")
 --
 -- search for files in notes (ignore zettelkasten)
-vim.keymap.set("n", "<leader>ois", ":Telescope find_files search_dirs={\"/Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/notes\"}<cr>")
-vim.keymap.set("n", "<leader>oiz", ":Telescope live_grep search_dirs={\"/Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/notes\"}<cr>")
+-- vim.keymap.set("n", "<leader>ois", ":Telescope find_files search_dirs={\"/Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/notes\"}<cr>")
+-- vim.keymap.set("n", "<leader>oiz", ":Telescope live_grep search_dirs={\"/Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/notes\"}<cr>")
 --
 -- move file in current buffer to zettelkasten folder
 vim.keymap.set("n", "<leader>ok", ":!mv '%:p' /Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/zettelkasten<cr>:bd<cr>")
