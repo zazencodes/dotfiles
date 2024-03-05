@@ -18,8 +18,9 @@ alias vim=nvim
 export VISUAL=nvim
 # export EDITOR="$VISUAL"
 
-# Enable zoxide
+# Zoxide
 eval "$(zoxide init zsh)"
+alias cd=z
 
 # Alias to brew's python
 # Note: use symlinks, e.g.
