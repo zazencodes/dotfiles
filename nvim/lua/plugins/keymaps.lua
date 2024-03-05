@@ -48,25 +48,23 @@ vim.keymap.set('n', '<leader>gp', ":lua require('goto-preview').close_all_win()<
 -- obsidian --
 --------------
 --
--- shell workflow
--- >>> # navigate to vault (optional)
--- >>> oo
+-- >>> oo # from shell, navigate to vault (optional)
 --
--- >>> # call my "obsidian new note" shell script (~/bin/on)
--- >>> on "Note Name"
+-- # NEW NOTE
+-- >>> on "Note Name" # call my "obsidian new note" shell script (~/bin/on)
+-- >>>
+-- >>> ))) <leader>on # inside vim now, format note as template
+-- >>> ))) # add tag, e.g. fact / blog / video / etc..
+-- >>> ))) # add hubs, e.g. [[python]], [[machine-learning]], etc...
+-- >>> ))) <leader>of # format title
 --
--- ))) # inside vim now, format note as template
--- ))) <leader>on
--- ))) # add tag, e.g. fact / blog / video / etc..
--- ))) # add hubs, e.g. [[python]], [[machine-learning]], etc...
---
--- >>> # review notes in inbox
--- >>> or
---
--- ))) # inside vim now, move to zettelkasten
--- ))) <leader>ok
--- ))) # or delete
--- ))) <leader>odd
+-- # END OF DAY/WEEK REVIEW
+-- >>> or # review notes in inbox
+-- >>>
+-- >>> ))) <leader>ok # inside vim now, move to zettelkasten
+-- >>> ))) <leader>odd # or delete
+-- >>>
+-- >>> og # organize saved notes from zettelkasten into notes/[tag] folders
 --
 -- navigate to vault
 vim.keymap.set("n", "<leader>oo", ":cd /Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes<cr>")
