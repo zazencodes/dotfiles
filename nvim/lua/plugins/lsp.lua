@@ -56,7 +56,7 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'pyright' }
+local servers = { 'pyright', 'tsserver' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
@@ -173,14 +173,39 @@ cmp.setup {
 }
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'sh',
+  pattern = '*.sh',
   callback = function()
     vim.lsp.start({
       name = 'bash-language-server',
       cmd = { 'bash-language-server', 'start' },
     })
   end,
+  -- { desc = 'Start bash language server' }
 })
 
 
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   pattern = '*.py',
+--   callback = function()
+--     if vim.lsp.buf.format then
+--       vim.lsp.buf.format()
+--     elseif vim.lsp.buf.formatting then
+--       vim.lsp.buf.formatting()
+--     end
+--   end,
+--   -- { desc = 'Format current buffer on save with LSP' }
+-- })
+
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.js',
+  callback = function()
+    if vim.lsp.buf.format then
+      vim.lsp.buf.format()
+    elseif vim.lsp.buf.formatting then
+      vim.lsp.buf.formatting()
+    end
+  end,
+  -- { desc = 'Format current buffer on save with LSP' }
+})
 
