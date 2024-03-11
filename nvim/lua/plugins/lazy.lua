@@ -13,13 +13,24 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  'onsails/lspkind.nvim',
+  { 'onsails/lspkind.nvim' },
+
+  { 'tpope/vim-fugitive' },
+
+  {
+      "ziontee113/icon-picker.nvim",
+      config = function()
+          require("icon-picker").setup({ disable_legacy_commands = true })
+      end
+  },
+
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle" },
     ft = { "markdown" },
     build = function() vim.fn["mkdp#util#install"]() end,
   },
+
   {
     "epwalsh/obsidian.nvim",
     version = "*",
@@ -29,7 +40,9 @@ require('lazy').setup({
       "nvim-lua/plenary.nvim",
     },
   },
-  'folke/zen-mode.nvim',
+
+  { 'folke/zen-mode.nvim' },
+
   {
     "nvim-tree/nvim-tree.lua",
     version = "*",
@@ -49,8 +62,11 @@ require('lazy').setup({
         }
       end,
   },
-  {"tpope/vim-surround"},
-  {"ryanoasis/vim-devicons"},
+
+  { "tpope/vim-surround" },
+
+  { "ryanoasis/vim-devicons" },
+
   {
     "goolord/alpha-nvim",
     config = function ()
@@ -115,10 +131,12 @@ require('lazy').setup({
   },
 
   { "catppuccin/nvim", as = "catppuccin" },
+
   {
     "windwp/nvim-autopairs",
       config = function() require("nvim-autopairs").setup {} end
   },
+
   {
     'terrortylor/nvim-comment',
     config = function()
@@ -197,6 +215,7 @@ require('lazy').setup({
       'j-hui/fidget.nvim',
     }
   },
+
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
@@ -213,12 +232,12 @@ require('lazy').setup({
   },
 
    -- Fancier statusline
-  'nvim-lualine/lualine.nvim',
+  { 'nvim-lualine/lualine.nvim' },
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
-  'nvim-telescope/telescope-symbols.nvim',
+  { 'nvim-telescope/telescope-symbols.nvim' },
 
-  -- { "folke/twilight.nvim", opts = { } },
+  { "folke/twilight.nvim", opts = { } },
 })
 
