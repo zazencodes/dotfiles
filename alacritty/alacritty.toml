@@ -26,6 +26,7 @@ bindings = [
   { key = "Right", mods = "Alt", chars = "\u001BF" },
   { key = "Left",  mods = "Alt", chars = "\u001BB" },
   { key = "f",     mods = "Alt", action = "ToggleSimpleFullscreen" },
+  { key = "Q",       mods = "Command",  action = "None" }
 ]
 
 [window]
