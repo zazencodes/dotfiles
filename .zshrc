@@ -19,15 +19,19 @@ export VISUAL=nvim
 # export EDITOR="$VISUAL"
 
 # Zoxide
-eval "$(zoxide init zsh)"
-alias cd=z
+# eval "$(zoxide init --cmd=cd zsh)"
 
-# Alias to brew's python
+# Tmux
+alias t=tmux
+
+# Python
 # Note: use symlinks, e.g.
 # >>> ln -vs /opt/homebrew/bin/python3.9 ~/bin/python
 # >>> ln -vs /opt/homebrew/bin/pip3.9 ~/bin/pip
 alias python3.12=/opt/homebrew/bin/python3.12
 alias pip3.12=/opt/homebrew/bin/pip3.12
+alias pyv=$HOME/virtualenvs/adhoc/bin/python
+alias piv=$HOME/virtualenvs/adhoc/bin/pip
 
 # Git
 alias gits='git status'
@@ -48,13 +52,17 @@ export EDITOR='mate -w'
 nn() { touch ~/Downloads/$1 && mate $1 }
 
 # Obsidian
-alias oo='cd /Users/alex/library/Mobile\ Documents/iCloud~md~obsidian/Documents/ZazenCodes'
-alias or='vim /Users/alex/library/Mobile\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/inbox/*.md'
+alias oo='cd $HOME/library/Mobile\ Documents/iCloud~md~obsidian/Documents/ZazenCodes'
+alias or='vim $HOME/library/Mobile\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/inbox/*.md'
+alias ou='cd $HOME/notion-obsidian-sync-zazencodes && node batchUpload.js --lastmod-days-window 5'
+
+# Path shortcuts
+alias nvc='cd $HOME/.config/nvim && vim'
 
 # App aliases
 alias cat='bat -pp'
-alias vue=/Users/alex/.yarn/bin/vue
-alias httpx='/Users/alex/go/bin/httpx'
+alias vue='$HOME/.yarn/bin/vue'
+alias httpx='$HOME/go/bin/httpx'
 alias sqlj='java -jar /Applications/SQLWorkbenchJ.app/Contents/Java/sqlworkbench.jar </dev/null &>/dev/null &'
 
 # App shortcuts
