@@ -58,11 +58,12 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "Q", "<nop>")
 
 -- move to before/after underscores with - and l (repeatable with "n/N")
-vim.keymap.set({ "n", "v" }, "<leader>-", "/_/e-1<cr>", { silent = true })
-vim.keymap.set({ "n", "v" }, "<leader>l", "?_?e+1<cr>", { silent = true })
+-- vim.keymap.set({ "n", "v" }, "<leader>-", "/_/e-1<cr>", { silent = true })
+-- vim.keymap.set({ "n", "v" }, "<leader>l", "?_?e+1<cr>", { silent = true })
+--
 -- move to underscores with - and l (repeatable with ";")
--- vim.keymap.set({ "n", "v" }, "<leader>-", "f_", { silent = true })
--- vim.keymap.set({ "n", "v" }, "<leader>l", "F_", { silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>-", "f_", { silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>l", "F_", { silent = true })
 
 -- -- search and replace the word under cursor in the file with <leader>s
 -- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
