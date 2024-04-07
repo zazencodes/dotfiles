@@ -25,8 +25,9 @@ family = "DejaVuSansM Nerd Font Mono"
 bindings = [
   { key = "Right", mods = "Alt", chars = "\u001BF" },
   { key = "Left",  mods = "Alt", chars = "\u001BB" },
-  { key = "f",     mods = "Alt", action = "ToggleSimpleFullscreen" },
-  { key = "Q",       mods = "Command",  action = "None" }
+  { key = "F",     mods = "Alt", action = "ToggleSimpleFullscreen" },
+  { key = "Q",       mods = "Command",  action = "None" },
+  { key = "Q",       mods = "Control",  action = "None" },
 ]
 
 [window]
