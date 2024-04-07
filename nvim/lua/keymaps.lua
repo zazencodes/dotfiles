@@ -24,6 +24,7 @@ vim.keymap.set("n", "<leader><down>", ":resize -10<cr>")
 vim.keymap.set("n", "<leader>n", ":bn<cr>")
 vim.keymap.set("n", "<leader>p", ":bp<cr>")
 vim.keymap.set("n", "<leader>x", ":bd<cr>")
+vim.keymap.set("n", "<leader>m", ":b#<cr>")
 
 -- unhilight
 vim.keymap.set("n", "<leader>h", ":noh<cr>")
@@ -67,3 +68,6 @@ vim.keymap.set({ "n", "v" }, "<leader>l", "F_", { silent = true })
 
 -- -- search and replace the word under cursor in the file with <leader>s
 -- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- pyright ignore line
+vim.keymap.set("n", "<leader>ig", "A # pyright: ignore<Esc>")
