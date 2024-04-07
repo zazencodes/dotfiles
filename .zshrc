@@ -38,7 +38,8 @@ alias gits='git status'
 alias gita='git add -u'
 gitm() { git commit -m "$1" }
 alias gitp='git push'
-alias gitq='git add -u && git commit -m "Update" && git push'
+alias gitu='git commit -m "Update $(date +%F)"'
+alias gitq='git add -u && git commit -m "Update $(date +%F)" && git push'
 alias gitc='aicommits' # requires aicommits installed (https://github.com/Nutlope/aicommits)
 
 # Jupyter
@@ -73,9 +74,11 @@ alias leet="nvim leetcode.nvim"
 export JUPYTER_NOTEBOOK_STYLE='from IPython.display import HTML;HTML("<style>div.text_cell_render{font-size:130%;padding-top:50px;padding-bottom:50px}</style>")'
 
 # Dir list, nav
+alias pwdy="echo $(pwd) | pbcopy"
+alias cl="clear"
 alias z="cd"
 alias lr="ls -lrt"
-alias zr="cd $(ls -td -- */ | head -n 1)"
+alias zr="cd $(ls -td -- $(pwd)/*/ | head -n 1)"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
