@@ -239,5 +239,9 @@ require('lazy').setup({
   { 'nvim-telescope/telescope-symbols.nvim' },
 
   { "folke/twilight.nvim", opts = { } },
+
+  -- Treesitter playground
+  { "nvim-treesitter/nvim-treesitter" },
+  { "nvim-treesitter/playground" },
 })
 
