@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 
 -- save, quit
 vim.keymap.set("n", "<leader>w", ":w<cr>")
-vim.keymap.set("n", "<leader>c", ":q<cr>")
+vim.keymap.set("n", "<leader>d", ":q<cr>")
 
 -- ignore capitalization mistakes
 vim.cmd("ca W w")
@@ -71,3 +71,8 @@ vim.keymap.set({ "n", "v" }, "<leader>l", "F_", { silent = true })
 
 -- pyright ignore line
 vim.keymap.set("n", "<leader>ig", "A # pyright: ignore<Esc>")
+
+-- checkbox
+vim.keymap.set('n', '<leader>ch', [[:s/\[\s\]/[x]/<cr>]], { silent = true })
+vim.keymap.set('n', '<leader>cu', [[:s/\[x\]/[ ]/<cr>]], { silent = true })
+
