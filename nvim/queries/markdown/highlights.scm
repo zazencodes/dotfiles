@@ -1,10 +1,10 @@
 ;; extends
 
 ;; replace "-" with a dot
-(list
-   (list_item
-   (list_marker_minus) @conceal (#set! conceal "・")
- ))
+; (list
+;    (list_item
+;    (list_marker_minus) @conceal (#set! conceal "・")
+;  ))
 
 ;; empty checkbox
  (list
