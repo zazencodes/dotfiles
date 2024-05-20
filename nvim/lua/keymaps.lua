@@ -24,7 +24,7 @@ vim.keymap.set("n", "<leader><down>", ":resize -10<cr>")
 vim.keymap.set("n", "<leader>n", ":bn<cr>")
 vim.keymap.set("n", "<leader>p", ":bp<cr>")
 vim.keymap.set("n", "<leader>x", ":bd<cr>")
-vim.keymap.set("n", "<leader>m", ":b#<cr>")
+vim.keymap.set("n", "<leader>b", ":b#<cr>")
 
 -- unhilight
 vim.keymap.set("n", "<leader>h", ":noh<cr>")
