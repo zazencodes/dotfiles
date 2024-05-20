@@ -56,7 +56,7 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- disable the Q command
-vim.keymap.set("n", "Q", "<nop>")
+-- vim.keymap.set("n", "Q", "<nop>")
 
 -- move to before/after underscores with - and l (repeatable with "n/N")
 -- vim.keymap.set({ "n", "v" }, "<leader>-", "/_/e-1<cr>", { silent = true })
