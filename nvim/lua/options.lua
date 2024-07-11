@@ -1,4 +1,4 @@
-vim.g.python3_host_prog = os.getenv("HOME") .. '/virtualenvs/nvim-venv/bin/python' -- python code environment
+-- vim.g.python3_host_prog = os.getenv("HOME") .. '/virtualenvs/nvim-venv/bin/python' -- python code environment
 
 vim.opt.encoding = "utf-8" -- set encoding
 vim.opt.nu = true -- enable line numbers
