@@ -13,15 +13,20 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  { 'onsails/lspkind.nvim' },
-
-  { 'tpope/vim-fugitive' },
+  { "onsails/lspkind.nvim" },
 
   {
-      "ziontee113/icon-picker.nvim",
-      config = function()
-          require("icon-picker").setup({ disable_legacy_commands = true })
-      end
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require('gitsigns').setup()
+    end
+  },
+
+  {
+    "ziontee113/icon-picker.nvim",
+    config = function()
+      require("icon-picker").setup({ disable_legacy_commands = true })
+    end
   },
 
   {
