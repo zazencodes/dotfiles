@@ -5,6 +5,10 @@ fi
 # Shell config
 export LANG=en_US.UTF-8
 
+# Alacritty config
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+
 # Extend PATH
 export PATH=~/bin:$PATH
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH" # Add homebrew java to path
@@ -78,7 +82,7 @@ alias pwdy="echo $(pwd) | pbcopy"
 alias cl="clear"
 alias z="cd"
 alias lr="ls -lrt"
-alias zr="cd $(ls -td -- $(pwd)/*/ | head -n 1)"
+# alias zr="cd $(ls -td -- $(pwd)/*/ | head -n 1)"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
