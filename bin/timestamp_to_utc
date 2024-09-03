@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+
+import sys
+import datetime
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: timestamp_to_utc <timestamp>")
+        sys.exit(1)
+
+    try:
+        timestamp = int(sys.argv[1][:10])
+        utc_time = datetime.datetime.fromtimestamp(timestamp, tz=datetime.UTC).strftime('%Y-%m-%d %H:%M:%S')
+        print(utc_time)
+    except ValueError:
+        print("Invalid timestamp.")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
