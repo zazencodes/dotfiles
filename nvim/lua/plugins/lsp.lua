@@ -58,6 +58,16 @@ require('mason').setup()
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
 local servers = { 'pyright', 'tsserver' }
 
+local server_settings = {
+  pyright = {
+    python = {
+      analysis = {
+        autoImportCompletions = false
+      }
+    }
+  }
+}
+
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
   ensure_installed = servers,
@@ -71,6 +81,7 @@ for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
+    settings = server_settings[lsp],
   }
 end
 
@@ -81,6 +92,8 @@ require('fidget').setup()
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
+
+
 
 -- Python virtual env detection
 -- local util = require("lspconfig/util")
