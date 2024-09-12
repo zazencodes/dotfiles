@@ -1,8 +1,8 @@
 -- Diagnostic keymaps
--- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
--- vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
--- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
--- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev)
+vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>dd', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>ds', vim.diagnostic.setloclist)
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -56,15 +56,28 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { 'pyright', 'tsserver' }
+local servers = {
+  'pyright',
+  'tsserver',
+  'ruff_lsp',
+}
+
 
 local server_settings = {
+  ruff_lsp = {},
+  tsserver = {},
   pyright = {
+    pyright = {
+      -- Using Ruff's import organizer
+      disableOrganizeImports = true,
+    },
     python = {
       analysis = {
-        autoImportCompletions = false
-      }
-    }
+        -- Ignore all files for analysis to exclusively use Ruff for linting
+        ignore = { '*' },
+        autoImportCompletions = false,
+      },
+    },
   }
 }
 
@@ -210,15 +223,15 @@ vim.api.nvim_create_autocmd('FileType', {
 -- })
 
 
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.js',
-  callback = function()
-    if vim.lsp.buf.format then
-      vim.lsp.buf.format()
-    elseif vim.lsp.buf.formatting then
-      vim.lsp.buf.formatting()
-    end
-  end,
-  -- { desc = 'Format current buffer on save with LSP' }
-})
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   pattern = '*.js',
+--   callback = function()
+--     if vim.lsp.buf.format then
+--       vim.lsp.buf.format()
+--     elseif vim.lsp.buf.formatting then
+--       vim.lsp.buf.formatting()
+--     end
+--   end,
+--   -- { desc = 'Format current buffer on save with LSP' }
+-- })
 

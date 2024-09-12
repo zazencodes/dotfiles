@@ -81,9 +81,20 @@ vim.api.nvim_create_autocmd({"BufWritePre"}, {
   command = [[%s/\s\+$//e]],
 }) -- remove trailing whitespace from all lines before saving a file)
 
-local Black = vim.api.nvim_create_augroup("Black", { clear = true })
+-- local Black = vim.api.nvim_create_augroup("Black", { clear = true })
+-- vim.api.nvim_create_autocmd("bufWritePost", {
+--   group = Black,
+--   pattern = "*.py",
+--   command = "silent !black %",
+-- })
+
+local RuffSort = vim.api.nvim_create_augroup("RuffSort", { clear = true })
 vim.api.nvim_create_autocmd("bufWritePost", {
-  group = Black,
+  group = RuffSort,
   pattern = "*.py",
-  command = "silent !black %",
+  callback = function()
+    vim.cmd("silent !ruff check --select I --fix %")
+    vim.cmd("silent !ruff format %")
+  end,
+
 })
