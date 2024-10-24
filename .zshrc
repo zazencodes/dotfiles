@@ -61,6 +61,7 @@ nn() { touch ~/Downloads/$1 && mate $1 }
 alias oo='cd $HOME/library/Mobile\ Documents/iCloud~md~obsidian/Documents/ZazenCodes'
 alias or='vim $HOME/library/Mobile\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/inbox/*.md'
 alias ou='cd $HOME/notion-obsidian-sync-zazencodes && node batchUpload.js --lastmod-days-window 5'
+alias komo='cd $HOME/Google\ Drive/Other\ computers/My\ MacBook\ Pro/Obsidian/Komorebi\ Art\ Gallery'
 
 # Path shortcuts
 alias nvc='cd $HOME/.config/nvim && vim'
