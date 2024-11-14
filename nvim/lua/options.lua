@@ -88,6 +88,13 @@ vim.api.nvim_create_autocmd({"BufWritePre"}, {
 --   command = "silent !black %",
 -- })
 
+local Prettier = vim.api.nvim_create_augroup("Prettier", { clear = true })
+vim.api.nvim_create_autocmd("bufWritePost", {
+  group = Prettier,
+  pattern = "*.vue",
+  command = "silent !node_modules/.bin/prettier % -w",
+})
+
 local RuffSort = vim.api.nvim_create_augroup("RuffSort", { clear = true })
 vim.api.nvim_create_autocmd("bufWritePost", {
   group = RuffSort,

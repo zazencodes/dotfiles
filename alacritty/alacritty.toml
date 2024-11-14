@@ -35,6 +35,8 @@ bindings = [
 
 [window]
 # startup_mode = "SimpleFullscreen"
+option_as_alt = "Both" # "OnlyLeft" | "OnlyRight" | "Both" | "None" # (macos only)
+
 
 [window.padding]
 x = 5
