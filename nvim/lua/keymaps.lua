@@ -55,6 +55,13 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 -- map Ctrl-c to Escape
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
+-- move 5 lines up/down with arrow keys
+vim.keymap.set("n", "<Down>", "5j")
+vim.keymap.set("n", "<Up>", "5k")
+
+-- decrement integers with Ctrl-b
+vim.keymap.set("n", "<C-b>", "<C-a>")
+
 -- disable the Q command
 -- vim.keymap.set("n", "Q", "<nop>")
 
@@ -66,8 +73,8 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set({ "n", "v" }, "<leader>-", "f_", { silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>l", "F_", { silent = true })
 
--- -- search and replace the word under cursor in the file with <leader>s
--- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- search and replace the word under cursor in the file with <leader>s
+vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- pyright ignore line
 vim.keymap.set("n", "<leader>ig", "A # pyright: ignore<Esc>")
@@ -75,4 +82,35 @@ vim.keymap.set("n", "<leader>ig", "A # pyright: ignore<Esc>")
 -- checkbox
 vim.keymap.set('n', '<leader>ty', [[:s/\[\s\]/[x]/<cr>]], { silent = true })
 vim.keymap.set('n', '<leader>tu', [[:s/\[x\]/[ ]/<cr>]], { silent = true })
+
+-- Functions to toggle comments in JavaScript
+-- (for use in Vue files, where comment.nvim is not working for me)
+vim.keymap.set({'n', 'v'}, '<leader>jc', [[:s/^/\/\//g<cr>]], { silent = true })
+vim.keymap.set({'n', 'v'}, '<leader>jd', [[:s/\/\///g<cr>]], { silent = true })
+
+-- Toggle checkbox values
+function toggle_checkbox()
+    -- Get the current line
+    local line = vim.api.nvim_get_current_line()
+
+    -- Check if line contains unchecked checkbox
+    if line:match("^%s*-%s*%[ %]") then
+        -- Replace unchecked with checked
+        local new_line = line:gsub("%[ %]", "[x]")
+        vim.api.nvim_set_current_line(new_line)
+
+    -- Check if line contains checked checkbox
+    elseif line:match("^%s*-%s*%[x%]") then
+        -- Replace checked with unchecked
+        local new_line = line:gsub("%[x%]", "[ ]")
+        vim.api.nvim_set_current_line(new_line)
+
+    -- If no checkbox, do nothing
+    else
+        print("No checkbox found on this line")
+    end
+end
+
+vim.keymap.set('n', '<leader>ti', toggle_checkbox, { noremap = true, silent = true })
+
 

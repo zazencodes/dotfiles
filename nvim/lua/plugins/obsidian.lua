@@ -42,12 +42,12 @@ require("obsidian").setup({
       opts = { noremap = false, expr = true, buffer = true },
     },
     -- toggle check-boxes
-    -- ["<leader>ch"] = {
-    --   action = function()
-    --     return require("obsidian").util.toggle_checkbox()
-    --   end,
-    --   opts = { buffer = true },
-    -- },
+    ["<leader>ti"] = {
+      action = function()
+        return require("obsidian").util.toggle_checkbox()
+      end,
+      opts = { buffer = true },
+    },
   },
   completion = {
     nvim_cmp = true,

@@ -283,10 +283,10 @@ require('lazy').setup({
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
-      provider = "openai",
-      openai = {
-        model = "gpt-4o-mini",
-      },
+      -- provider = "openai",
+      -- openai = {
+      --   model = "gpt-4o-mini",
+      -- },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
@@ -325,6 +325,11 @@ require('lazy').setup({
         ft = { "markdown", "Avante" },
       },
     },
+    init = function()
+      -- Recommended option
+      -- views can only be fully collapsed with the global statusline
+      vim.opt.laststatus = 3
+    end,
   }
 
 
