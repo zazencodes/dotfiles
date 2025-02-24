@@ -58,10 +58,10 @@ require('mason').setup()
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
 local servers = {
   'pyright',
-  'ruff_lsp',
+  'ruff',
   'tailwindcss',
   'volar',
-  'tsserver',
+  'ts_ls',
   'eslint'
 }
 
