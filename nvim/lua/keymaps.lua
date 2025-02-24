@@ -77,7 +77,10 @@ vim.keymap.set({ "n", "v" }, "<leader>l", "F_", { silent = true })
 vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- pyright ignore line
-vim.keymap.set("n", "<leader>ig", "A # pyright: ignore<Esc>")
+-- vim.keymap.set("n", "<leader>ig", "A # pyright: ignore<Esc>")
+
+-- ruff ignore line
+vim.keymap.set("n", "<leader>ig", "A # noqa<Esc>")
 
 -- checkbox
 vim.keymap.set('n', '<leader>ty', [[:s/\[\s\]/[x]/<cr>]], { silent = true })
