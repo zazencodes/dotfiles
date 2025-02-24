@@ -8,12 +8,17 @@ git clone https://github.com/agalea91/dotfiles.git ~/dotfiles
 ln -s ~/dotfiles/alacritty ~/.config/alacritty
 ln -s ~/dotfiles/nvim ~/.config/nvim
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/.zshrc ~/.zshrc
 ```
 
 ## Scripts
 ```bash
-ln -s ~/dotfiles/bin/on ~/bin/on
-ln -s ~/dotfiles/bin/og ~/bin/og
+./symlink_dotfiles.sh
+
+# Runs symlink command for each file in ~/dotfiles/bin
+# But ignores files that are already symlinked
+# e.g.
+# ln -s ~/dotfiles/bin/on ~/bin/on
 ```
 
 
