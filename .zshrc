@@ -37,6 +37,9 @@ alias python3.12=/opt/homebrew/bin/python3.12
 alias pip3.12=/opt/homebrew/bin/pip3.12
 alias pyv=$HOME/virtualenvs/adhoc/bin/python
 alias piv=$HOME/virtualenvs/adhoc/bin/pip
+alias jn='$HOME/virtualenvs/adhoc/bin/jupyter notebook'
+alias jc='$HOME/virtualenvs/adhoc/bin/jupyter console'
+export JUPYTER_NOTEBOOK_STYLE='from IPython.display import HTML;HTML("<style>div.text_cell_render{font-size:130%;padding-top:50px;padding-bottom:50px}</style>")'
 
 # Git
 alias gits='git status'
@@ -46,12 +49,6 @@ alias gitp='git push'
 alias gitu='git commit -m "Update $(date +%F)"'
 alias gitq='git add -u && git commit -m "Update $(date +%F)" && git push'
 alias gitc='aicommits' # requires aicommits installed (https://github.com/Nutlope/aicommits)
-
-# Jupyter
-alias jn='jupyter notebook --no-browser'
-alias jc='jupyter console'
-export JUPYTER_NOTEBOOK_STYLE='from IPython.display import HTML;HTML("<style>div.text_cell_render{font-size:130%;padding-top:50px;padding-bottom:50px}</style>")'
-alias jl='jupyter lab --core-mode' # Fix for M1 mac
 
 # Plain text
 export EDITOR='mate -w'
@@ -65,6 +62,7 @@ alias komo='cd $HOME/Google\ Drive/Other\ computers/My\ MacBook\ Pro/Obsidian/Ko
 
 # Path shortcuts
 alias nvc='cd $HOME/.config/nvim && vim'
+alias zc='cd $HOME/pro/zazencodes-season-2/src'
 
 # App aliases
 alias cat='bat -pp'
@@ -75,9 +73,6 @@ alias sqlj='java -jar /Applications/SQLWorkbenchJ.app/Contents/Java/sqlworkbench
 # App shortcuts
 alias lg=lazygit
 alias leet="nvim leetcode.nvim"
-
-# Variables
-export JUPYTER_NOTEBOOK_STYLE='from IPython.display import HTML;HTML("<style>div.text_cell_render{font-size:130%;padding-top:50px;padding-bottom:50px}</style>")'
 
 # Dir list, nav
 alias pwdy="echo $(pwd) | pbcopy"
@@ -129,6 +124,10 @@ unset __conda_setup
 
 
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+# Created by `pipx`
+export PATH="$PATH:/Users/alex/.local/bin"
+
 # AI
 alias llm_deepseek="llm -m deepseek-r1:8b "
 alias llm_cat_dir="find . -maxdepth 1 -type f | xargs -I {} sh -c 'echo \"\n=== {} ===\n\"; cat {}'"
