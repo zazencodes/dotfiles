@@ -129,3 +129,6 @@ unset __conda_setup
 
 
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+# AI
+alias llm_deepseek="llm -m deepseek-r1:8b "
+alias llm_cat_dir="find . -maxdepth 1 -type f | xargs -I {} sh -c 'echo \"\n=== {} ===\n\"; cat {}'"

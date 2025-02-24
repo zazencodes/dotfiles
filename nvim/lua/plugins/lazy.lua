@@ -283,6 +283,16 @@ require('lazy').setup({
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
+      -- provider = "ollama",
+      -- vendors = {
+      --   ollama = {
+      --     __inherited_from = "openai",
+      --     api_key_name = "",
+      --     endpoint = "http://127.0.0.1:11434/v1",
+      --     model = "deepseek-r1:8b",
+      --   },
+      -- },
+
       -- provider = "openai",
       -- openai = {
       --   model = "gpt-4o-mini",
