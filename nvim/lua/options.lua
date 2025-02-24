@@ -35,6 +35,8 @@ vim.opt.isfname:append("@-@") -- include '@' in the set of characters considered
 
 vim.opt.updatetime = 50 -- Time in milliseconds to wait before triggering the plugin events after a change
 
+
+
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   pattern = "*.py",
   callback = function()
@@ -105,3 +107,19 @@ vim.api.nvim_create_autocmd("bufWritePost", {
   end,
 
 })
+
+-- Enable JSON folding
+-- `zc` to close a fold
+-- `zo` to open a fold
+-- `za` to toggle a fold
+-- `zR` to open all folds
+-- `zM` to close all folds
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+  pattern = "*.json",
+  callback = function()
+    vim.opt_local.foldmethod = "syntax"
+    vim.opt_local.foldenable = true
+    vim.opt_local.foldlevel = 99  -- Start with all folds open
+  end
+})
+
