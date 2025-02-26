@@ -1,6 +1,4 @@
 
-import = ["/Users/alex/.config/alacritty/themes/themes/dracula.toml"]
-
 [font]
 size = 15
 
@@ -49,6 +47,10 @@ lines = 90
 [window.position]
 x = 800
 y = 150
+
+[general]
+
+import = ["/Users/alex/.config/alacritty/themes/dracula.toml"]
 
 # themes:
 # - https://github.com/alacritty/alacritty-theme
