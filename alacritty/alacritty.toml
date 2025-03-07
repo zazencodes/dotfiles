@@ -1,3 +1,10 @@
+[general]
+# import = ["~/.config/alacritty/themes/dracula.toml"]
+# import = ["~/.config/alacritty/themes/catppuccin-mocha.toml"]
+import = ["~/.config/alacritty/themes/catppuccin-macchiato.toml"]
+
+[env]
+TERM = "xterm-256color"
 
 [font]
 size = 15
@@ -48,9 +55,6 @@ lines = 90
 x = 800
 y = 150
 
-[general]
-
-import = ["/Users/alex/.config/alacritty/themes/dracula.toml"]
 
 # themes:
 # - https://github.com/alacritty/alacritty-theme
