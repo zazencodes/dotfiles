@@ -1,7 +1,8 @@
 [general]
 # import = ["~/.config/alacritty/themes/dracula.toml"]
+import = ["~/.config/alacritty/themes/dracula_plus.toml"]
 # import = ["~/.config/alacritty/themes/catppuccin-mocha.toml"]
-import = ["~/.config/alacritty/themes/catppuccin-macchiato.toml"]
+# import = ["~/.config/alacritty/themes/catppuccin-macchiato.toml"]
 
 [env]
 TERM = "xterm-256color"
