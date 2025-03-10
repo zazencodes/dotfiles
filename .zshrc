@@ -11,8 +11,9 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 
 # Extend PATH
-export PATH=~/bin:$PATH
+export PATH="$PATH:~/bin:~/.local/bin"
 # export PATH="/opt/homebrew/opt/openjdk/bin:$PATH" # Add homebrew java to path
+# export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 # Load credentials
 source $HOME/.secrets.sh
@@ -21,10 +22,7 @@ source $HOME/.secrets.sh
 alias v=nvim
 alias vim=nvim
 export VISUAL=nvim
-# export EDITOR="$VISUAL"
-
-# Zoxide
-# eval "$(zoxide init --cmd=cd zsh)"
+export EDITOR="$VISUAL"
 
 # fzf (Overrides and ctrl+r ctrl+t [cd with fuzzy search])
 source <(fzf --zsh)
@@ -34,6 +32,10 @@ export FZF_CTRL_R_OPTS="--height 40% --layout reverse --border"
 # eza
 export EZA_COLORS="ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:su=0:sf=0:oc=0:xa=0:uu=0:uR=0:un=0:gu=0:gR=0:gn=0:lc=0:lm=0:sn=0:nb=0:nk=0:nm=0:ng=0:nt=0"
 alias ls="eza --long --icons=always"
+alias lsr="eza --long --icons=always --sort=newest --reverse"
+alias lst="eza --long --icons=always -T"
+alias lst2="eza --long --icons=always -T -L=2"
+alias lst3="eza --long --icons=always -T -L=3"
 
 # Tmux
 alias t=tmux
@@ -84,13 +86,13 @@ alias cat='bat -pp'
 
 # App shortcuts
 alias lg=lazygit
-alias leet="nvim leetcode.nvim"
+# alias leet="nvim leetcode.nvim"
 
 # Dir list, nav
 alias pwdy="echo $(pwd) | pbcopy"
 alias cl="clear"
-alias z="cd"
-alias lr="ls -lrt"
+# alias z="cd"
+# alias lr="ls -lrt"
 # alias zr="cd $(ls -td -- $(pwd)/*/ | head -n 1)"
 alias ..="cd .."
 alias ...="cd ../.."
@@ -121,8 +123,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-
 # AI
 alias llm_deepseek="llm -m deepseek-r1:8b "
 alias llm_cat_dir="find . -maxdepth 1 -type f | xargs -I {} sh -c 'echo \"\n=== {} ===\n\"; cat {}'"
@@ -132,3 +132,4 @@ if [ -f '/Users/alex/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/alex/googl
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/alex/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alex/google-cloud-sdk/completion.zsh.inc'; fi
+
