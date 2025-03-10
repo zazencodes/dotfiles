@@ -7,8 +7,8 @@ export LANG=en_US.UTF-8
 
 # Alacritty config
 # https://chatgpt.com/c/a7b8eecc-e9d4-490d-9379-583c954945e3
-# bindkey "^[[1;3C" forward-word
-# bindkey "^[[1;3D" backward-word
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
 
 # Extend PATH
 export PATH=~/bin:$PATH
