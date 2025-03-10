@@ -25,9 +25,22 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # fzf (Overrides and ctrl+r ctrl+t [cd with fuzzy search])
+# Need to install fd for commands below to work
 source <(fzf --zsh)
-export FZF_CTRL_T_OPTS="--height 40% --layout reverse --border"
-export FZF_CTRL_R_OPTS="--height 40% --layout reverse --border"
+export FZF_CTRL_R_OPTS="--height=1 --reverse --no-scrollbar"
+export FZF_CTRL_T_OPTS="--height 40% --no-scrollbar"
+export FZF_CTRL_T_COMMAND='fd --type d --hidden --follow --exclude .git' # Only match dirs, but most people do '--type f'
+
+# cd widget using fd, ignore git and sort folders by depth (will fail for really large dirs, e.g. ~/)
+export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git . | awk -F'/' '{print NF-1, \$0}' | sort -n | cut -d' ' -f2-"
+# Use cd widget with Ctrl+O (default is Alt+C)
+bindkey '^O' fzf-cd-widget
+
+# **<tab> using fd, ignore git and sort folders by depth (will fail for really large dirs, e.g. ~/)
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1" | awk -F'/' '{print NF-1, $0}' | sort -n | cut -d' ' -f2-
+}
+
 
 # eza
 export EZA_COLORS="ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:su=0:sf=0:oc=0:xa=0:uu=0:uR=0:un=0:gu=0:gR=0:gn=0:lc=0:lm=0:sn=0:nb=0:nk=0:nm=0:ng=0:nt=0"
