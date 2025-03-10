@@ -29,12 +29,19 @@ require('lazy').setup({
     end
   },
 
+  -- Required as of 2025-03. Check latest documentation
   {
     "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle" },
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
+    build = ":call mkdp#util#install()",
   },
+  -- {
+  --   "iamcco/markdown-preview.nvim",
+  --   cmd = { "MarkdownPreviewToggle" },
+  --   ft = { "markdown" },
+  --   build = function() vim.fn["mkdp#util#install"]() end,
+  -- },
 
   {
     "epwalsh/obsidian.nvim",
