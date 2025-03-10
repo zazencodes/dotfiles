@@ -34,8 +34,9 @@ bindings = [
   # Bindings below allow word skipping with "Alt + Arrow" in tmux,
   # but interfere with pane resizing using Alt. Instead, use Ctrl + Arrow
   # to resize panes (this alternative is available by default).
-  { key = "Right",  mods = "Alt", chars = "\u001BF" },
-  { key = "Left",   mods = "Alt", chars = "\u001BB" },
+  # { key = "Right",  mods = "Alt", chars = "\u001BF" },
+  # { key = "Left",   mods = "Alt", chars = "\u001BB" },
+  # I set these in ~/.zshrc instead (2025 config)
 
 ]
 
