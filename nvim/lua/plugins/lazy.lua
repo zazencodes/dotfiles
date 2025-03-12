@@ -299,6 +299,11 @@ require('lazy').setup({
       --     model = "deepseek-r1:8b",
       --   },
       -- },
+      --
+      provider = "claude",
+      claude = {
+        model = "claude-3-7-sonnet-latest",
+      },
 
       -- provider = "openai",
       -- openai = {
