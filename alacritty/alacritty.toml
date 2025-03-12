@@ -1,3 +1,23 @@
+# THEMES
+# - https://github.com/alacritty/alacritty-theme
+
+# FONTS
+# - preview: https://www.nerdfonts.com/font-downloads
+# - install: https://gist.github.com/davidteren/898f2dcccd42d9f8680ec69a3a5d350e
+
+# CONFIG EXAMPLES
+# - https://gitlab.com/evertiro/dotfiles/blob/master/.config/alacritty/alacritty.yml
+# - https://fuchsia.googlesource.com/third_party/github.com/alacritty/alacritty/+/refs/tags/v0.10.0-rc2/alacritty.yml
+
+# fix bold rendering text by default on mac (alacritty)
+# ```bash
+# defaults write org.alacritty AppleFontSmoothing -int 0
+
+# fix bold rendering text by default on mac (system-wide)
+# defaults -currentHost write -g AppleFontSmoothing -int 0
+# ```
+
+
 [general]
 # import = ["~/.config/alacritty/themes/dracula.toml"]
 import = ["~/.config/alacritty/themes/dracula_plus.toml"]
@@ -57,20 +77,4 @@ lines = 90
 x = 800
 y = 150
 
-
-# themes:
-# - https://github.com/alacritty/alacritty-theme
-
-# fonts:
-# - preview: https://www.nerdfonts.com/font-downloads
-# - install: https://gist.github.com/davidteren/898f2dcccd42d9f8680ec69a3a5d350e
-
-# config examples:
-# - https://gitlab.com/evertiro/dotfiles/blob/master/.config/alacritty/alacritty.yml
-# - https://fuchsia.googlesource.com/third_party/github.com/alacritty/alacritty/+/refs/tags/v0.10.0-rc2/alacritty.yml
-
-# fix bold rendering text by default on mac (run once)
-# ```bash
-# defaults write org.alacritty AppleFontSmoothing -int 0
-# ```
 
