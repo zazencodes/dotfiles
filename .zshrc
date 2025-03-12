@@ -11,7 +11,7 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 
 # Extend PATH
-export PATH="$PATH:~/bin:~/.local/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 # export PATH="/opt/homebrew/opt/openjdk/bin:$PATH" # Add homebrew java to path
 # export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
@@ -29,12 +29,12 @@ export EDITOR="$VISUAL"
 source <(fzf --zsh)
 export FZF_CTRL_R_OPTS="--height=1 --reverse --no-scrollbar"
 export FZF_CTRL_T_OPTS="--height 40% --no-scrollbar"
-export FZF_CTRL_T_COMMAND='fd --type d --hidden --follow --exclude .git' # Only match dirs, but most people do '--type f'
+export FZF_CTRL_T_COMMAND='fd --hidden --follow --exclude .git'
 
 # cd widget using fd, ignore git and sort folders by depth (will fail for really large dirs, e.g. ~/)
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git . | awk -F'/' '{print NF-1, \$0}' | sort -n | cut -d' ' -f2-"
 # Use cd widget with Ctrl+O (default is Alt+C)
-bindkey '^O' fzf-cd-widget
+bindkey '^G' fzf-cd-widget
 
 # **<tab> using fd, ignore git and sort folders by depth (will fail for really large dirs, e.g. ~/)
 _fzf_compgen_dir() {
@@ -45,22 +45,22 @@ _fzf_compgen_dir() {
 # eza
 export EZA_COLORS="ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:su=0:sf=0:oc=0:xa=0:uu=0:uR=0:un=0:gu=0:gR=0:gn=0:lc=0:lm=0:sn=0:nb=0:nk=0:nm=0:ng=0:nt=0"
 alias ls="eza --long --icons=always"
-alias lsr="eza --long --icons=always --sort=newest --reverse"
-alias lst="eza --long --icons=always -T"
-alias lst2="eza --long --icons=always -T -L=2"
-alias lst3="eza --long --icons=always -T -L=3"
+alias lr="eza --long --icons=always --sort=newest --reverse"
+alias lt="eza --long --icons=always -T"
+alias lt2="eza --long --icons=always -T -L=2"
+alias lt3="eza --long --icons=always -T -L=3"
 
 # Tmux
 alias t=tmux
 
 # Python
-# Note: use symlinks, e.g.
-# >>> ln -vs /opt/homebrew/bin/python3.9 ~/bin/python
-# >>> ln -vs /opt/homebrew/bin/pip3.9 ~/bin/pip
-alias python3.12=/opt/homebrew/bin/python3.12
-alias pip3.12=/opt/homebrew/bin/pip3.12
-alias python=/opt/homebrew/bin/python3.12
-alias pip=/opt/homebrew/bin/pip3.12
+# Use symlinks instead of aliases, for proper virtual env activation support
+# >>> ln -vs /opt/homebrew/bin/python3.12 ~/bin/python
+# >>> ln -vs /opt/homebrew/bin/pip3.12 ~/bin/pip
+# alias python3.12=/opt/homebrew/bin/python3.12
+# alias pip3.12=/opt/homebrew/bin/pip3.12
+# alias python=/opt/homebrew/bin/python3.12
+# alias pip=/opt/homebrew/bin/pip3.12
 alias python3=/opt/homebrew/bin/python3.12
 alias pip3=/opt/homebrew/bin/pip3.12
 alias pyv=$HOME/virtualenvs/adhoc/bin/python
@@ -104,7 +104,7 @@ alias lg=lazygit
 # Dir list, nav
 alias pwdy="echo $(pwd) | pbcopy"
 alias cl="clear"
-# alias z="cd"
+alias z="cd"
 # alias lr="ls -lrt"
 # alias zr="cd $(ls -td -- $(pwd)/*/ | head -n 1)"
 alias ..="cd .."
