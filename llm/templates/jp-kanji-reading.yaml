@@ -1,0 +1,5 @@
+prompt: >
+  Given this Japanese phrase, output the Furigana reading. Add two spaces before each set of Kanji characters, to help me read them clearly, and use these brackets for the Furigana:【】. Also output the pure Kana reading.
+
+  $input
+

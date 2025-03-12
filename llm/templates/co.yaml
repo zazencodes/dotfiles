@@ -1,0 +1,4 @@
+prompt: >
+  Only output the command or code snippet for the request below.
+
+  $input

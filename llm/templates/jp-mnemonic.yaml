@@ -1,0 +1,14 @@
+prompt: >
+  You need to help me develop mnemonics for Japanese words to help me remember them as a native English speaker. I will provide you the word in Japanese and the meaning in English and you need to output 3 different mnemonics for me to chose from. Be as creative or weird as you want.
+
+  Output in this format (match the style as closely as you can):
+
+  ねむる (nemuru - to sleep)
+
+  "Nemo rests" - Nemo, the little fish, lying down on a cozy underwater bed, peacefully sleeping.
+
+  "Never move"- Someone telling you, "Never move when you’re asleep!" because you’re so deeply relaxed.
+
+  "Numb room" - Think of a numb room—so quiet and cozy, it lulls you right to sleep.
+
+  Here is my word: $input
