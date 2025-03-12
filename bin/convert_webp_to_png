@@ -1,0 +1,18 @@
+#!/Users/alex/virtualenvs/adhoc/bin/python
+
+from PIL import Image
+from pathlib import Path
+
+def convert_webp_to_png():
+    """Converts all WebP images in the current working directory to PNG format."""
+    cwd = Path.cwd()
+    
+    for webp_file in cwd.glob("*.webp"):
+        png_file = webp_file.with_suffix(".png")
+        
+        with Image.open(webp_file) as img:
+            img.save(png_file, "PNG")
+            print(f"Converted: {webp_file.name} -> {png_file.name}")
+
+if __name__ == "__main__":
+    convert_webp_to_png()
