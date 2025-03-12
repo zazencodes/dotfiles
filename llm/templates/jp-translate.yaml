@@ -1,0 +1,6 @@
+prompt: >
+  I am going to provide you with a sentence in English or Japanese and I need you to translate it to the other language.
+
+  If the given sentence is in English, then output three versions of the Japanese translation: 1. The translation with Kanji. 2. The Furigana reading. Add two spaces before each set of Kanji characters, to help me read them clearly, and use these brackets for the Furigana:【】. 3. The pure Kana reading.
+
+  $input
