@@ -13,6 +13,7 @@ ln -s ~/dotfiles/.p10k.zsh ~/.p10k.zsh
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 
 # llm cli tool templates
+# Do not run this until after you have installed llm
 rm -rf ~/Library/Application\ Support/io.datasette.llm/templates # delete if exists
 ln -s ~/dotfiles/llm/templates ~/Library/Application\ Support/io.datasette.llm
 ```

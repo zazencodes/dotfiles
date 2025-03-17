@@ -11,7 +11,7 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 
 # Extend PATH
-export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
+export PATH="$PATH:/opt/homebrew/bin:$HOME/bin:$HOME/.local/bin"
 # export PATH="/opt/homebrew/opt/openjdk/bin:$PATH" # Add homebrew java to path
 # export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
@@ -101,6 +101,10 @@ alias cat='bat -pp'
 alias lg=lazygit
 # alias leet="nvim leetcode.nvim"
 
+# AI
+alias llm_deepseek="llm -m deepseek-r1:8b "
+alias llm_cat_dir="find . -maxdepth 1 -type f | xargs -I {} sh -c 'echo \"\n=== {} ===\n\"; cat {}'"
+
 # Dir list, nav
 alias pwdy="echo $(pwd) | pbcopy"
 alias cl="clear"
@@ -136,13 +140,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# AI
-alias llm_deepseek="llm -m deepseek-r1:8b "
-alias llm_cat_dir="find . -maxdepth 1 -type f | xargs -I {} sh -c 'echo \"\n=== {} ===\n\"; cat {}'"
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/alex/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/alex/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/alex/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alex/google-cloud-sdk/completion.zsh.inc'; fi
-
