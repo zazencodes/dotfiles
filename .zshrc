@@ -145,3 +145,6 @@ if [ -f '/Users/alex/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/alex/googl
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/alex/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alex/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Added by Windsurf
+export PATH="/Users/alex/.codeium/windsurf/bin:$PATH"
