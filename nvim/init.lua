@@ -1,15 +1,15 @@
 require('options')
 require('keymaps')
--- if not vim.g.vscode then
-require('plugins.lazy')
-require('plugins.lualine')
-require('plugins.tele')
-require('plugins.treesitter')
-require('plugins.lsp')
-require('plugins.obsidian')
-require('plugins.zenmode')
-require('plugins.keymaps')
-require('plugins.options')
-require('workflows')
--- end
+if not vim.g.vscode then
+  require('plugins.lazy')
+  require('plugins.lualine')
+  require('plugins.tele')
+  require('plugins.treesitter')
+  require('plugins.lsp')
+  require('plugins.obsidian')
+  require('plugins.zenmode')
+  require('plugins.keymaps')
+  require('plugins.options')
+  require('workflows')
+end
 
