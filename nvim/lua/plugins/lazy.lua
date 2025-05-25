@@ -18,7 +18,50 @@ require('lazy').setup({
   {
     "lewis6991/gitsigns.nvim",
     config = function()
-      require('gitsigns').setup()
+      require('gitsigns').setup{
+        on_attach = function(bufnr)
+          local gitsigns = require('gitsigns')
+
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
+
+          -- Navigation
+          map('n', ']c', function()
+            if vim.wo.diff then
+              vim.cmd.normal({']c', bang = true})
+            else
+              gitsigns.nav_hunk('next')
+            end
+          end)
+
+          map('n', '[c', function()
+            if vim.wo.diff then
+              vim.cmd.normal({'[c', bang = true})
+            else
+              gitsigns.nav_hunk('prev')
+            end
+          end)
+
+          -- Actions
+          map('n', '<leader>hp', gitsigns.preview_hunk)
+          map('n', '<leader>hi', gitsigns.preview_hunk_inline)
+
+          map('n', '<leader>hd', gitsigns.diffthis)
+
+          map('n', '<leader>hD', function()
+            gitsigns.diffthis('~')
+          end)
+
+          map('n', '<leader>hQ', function() gitsigns.setqflist('all') end)
+          map('n', '<leader>hq', gitsigns.setqflist)
+
+          -- Toggles
+          map('n', '<leader>tw', gitsigns.toggle_word_diff)
+        end
+      }
     end
   },
 
@@ -284,6 +327,35 @@ require('lazy').setup({
     end,
   },
 
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("codecompanion").setup({
+        strategies = {
+          chat = {
+            adapter = "anthropic",
+          },
+          inline = {
+            adapter = "anthropic",
+          },
+        },
+        extensions = {
+          mcphub = {
+            callback = "mcphub.extensions.codecompanion",
+            opts = {
+              show_result_in_chat = true,  -- Show mcp tool results in chat
+              make_vars = true,            -- Convert resources to #variables
+              make_slash_commands = true,  -- Add prompts as /slash commands
+            }
+          }
+        }
+      })
+    end
+  },
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
