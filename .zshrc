@@ -45,7 +45,7 @@ _fzf_compgen_dir() {
 # eza
 export EZA_COLORS="ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:su=0:sf=0:oc=0:xa=0:uu=0:uR=0:un=0:gu=0:gR=0:gn=0:lc=0:lm=0:sn=0:nb=0:nk=0:nm=0:ng=0:nt=0"
 alias ls="eza --long --icons=always"
-alias lr="eza --long --icons=always --sort=newest --reverse"
+alias lr="eza --long --icons=always --sort=newest"
 alias lt="eza --long --icons=always -T"
 alias lt2="eza --long --icons=always -T -L=2"
 alias lt3="eza --long --icons=always -T -L=3"
@@ -102,7 +102,9 @@ alias lg=lazygit
 # alias leet="nvim leetcode.nvim"
 
 # AI
-alias llm_deepseek="llm -m deepseek-r1:8b "
+alias llm_gs="llm -m gemma3:4b "
+alias llm_gm="llm -m gemma3:12b "
+alias llm_gl="llm -m gemma3:27b "
 alias llm_cat_dir="find . -maxdepth 1 -type f | xargs -I {} sh -c 'echo \"\n=== {} ===\n\"; cat {}'"
 
 # Dir list, nav
