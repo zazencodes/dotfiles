@@ -356,31 +356,29 @@ require('lazy').setup({
       })
     end
   },
+
+  {
+      "ravitemer/mcphub.nvim",
+      dependencies = {
+          "nvim-lua/plenary.nvim",
+      },
+      build = "npm install -g mcp-hub@latest",  -- Installs `mcp-hub` node binary globally
+      config = function()
+          require("mcphub").setup()
+      end
+  },
+
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
-      -- provider = "ollama",
-      -- vendors = {
-      --   ollama = {
-      --     __inherited_from = "openai",
-      --     api_key_name = "",
-      --     endpoint = "http://127.0.0.1:11434/v1",
-      --     model = "deepseek-r1:8b",
-      --   },
-      -- },
-      --
       provider = "claude",
       claude = {
-        model = "claude-3-7-sonnet-latest",
+        -- disable_tools = true, -- disable tools!
+        -- model = "claude-3-7-sonnet-latest",
       },
-
-      -- provider = "openai",
-      -- openai = {
-      --   model = "gpt-4o-mini",
-      -- },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
@@ -391,8 +389,12 @@ require('lazy').setup({
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
+      "echasnovski/mini.pick", -- for file_selector provider mini.pick
+      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+      "ibhagwan/fzf-lua", -- for file_selector provider fzf
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua", -- for providers='copilot'
+      -- "zbirenbaum/copilot.lua", -- for providers='copilot'
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",
@@ -419,11 +421,22 @@ require('lazy').setup({
         ft = { "markdown", "Avante" },
       },
     },
-    init = function()
-      -- Recommended option
-      -- views can only be fully collapsed with the global statusline
-      vim.opt.laststatus = 3
-    end,
+    config = function()
+      require("avante").setup({
+        -- system_prompt as function ensures LLM always has latest MCP server state
+        -- This is evaluated for every message, even in existing chats
+        system_prompt = function()
+            local hub = require("mcphub").get_hub_instance()
+            return hub and hub:get_active_servers_prompt() or ""
+        end,
+        -- Using function prevents requiring mcphub before it's loaded
+        custom_tools = function()
+            return {
+                require("mcphub.extensions.avante").mcp_tool(),
+            }
+        end,
+      })
+    end
   },
 })
 
