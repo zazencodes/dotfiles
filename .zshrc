@@ -11,7 +11,7 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 
 # Extend PATH
-export PATH="$PATH:/opt/homebrew/bin:$HOME/bin:$HOME/.local/bin"
+export PATH="$PATH:/opt/homebrew/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
 # export PATH="/opt/homebrew/opt/openjdk/bin:$PATH" # Add homebrew java to path
 # export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
@@ -90,6 +90,7 @@ alias ou='cd $HOME/pro/notion-obsidian-sync-zazencodes && node batchUpload.js --
 # Path shortcuts
 alias nvc='cd $HOME/.config/nvim && vim'
 alias zc='cd $HOME/pro/zazencodes-season-2/src'
+alias cmcp='vim $HOME/Library/Application\ Support/Claude/claude_desktop_config.json'
 
 # App aliases
 alias cat='bat -pp'
@@ -101,7 +102,7 @@ alias cat='bat -pp'
 alias lg=lazygit
 # alias leet="nvim leetcode.nvim"
 
-# AI
+# AI/LLM
 alias llm_gs="llm -m gemma3:4b "
 alias llm_gm="llm -m gemma3:12b "
 alias llm_gl="llm -m gemma3:27b "
@@ -149,4 +150,4 @@ if [ -f '/Users/alex/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/alex/googl
 if [ -f '/Users/alex/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alex/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Added by Windsurf
-export PATH="/Users/alex/.codeium/windsurf/bin:$PATH"
+# export PATH="/Users/alex/.codeium/windsurf/bin:$PATH"
