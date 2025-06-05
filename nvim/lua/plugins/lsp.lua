@@ -60,7 +60,6 @@ local servers = {
   'pyright',
   'ruff',
   'tailwindcss',
-  'volar',
   'ts_ls',
   'eslint'
 }
