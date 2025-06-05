@@ -376,7 +376,8 @@ require('lazy').setup({
     opts = {
       provider = "claude",
       claude = {
-        -- disable_tools = true, -- disable tools!
+        disable_tools = true, -- disable tools!
+        model = "claude-3.5-haiku-latest"
         -- model = "claude-3-7-sonnet-latest",
       },
     },
