@@ -36,6 +36,8 @@ vim.opt.isfname:append("@-@") -- include '@' in the set of characters considered
 vim.opt.updatetime = 50 -- Time in milliseconds to wait before triggering the plugin events after a change
 
 
+vim.opt.textwidth = 80
+
 
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   pattern = "*.py",
