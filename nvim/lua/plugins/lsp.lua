@@ -66,8 +66,6 @@ local servers = {
 
 
 local server_settings = {
-  ruff_lsp = {},
-  tsserver = {},
   pyright = {
     pyright = {
       -- Using Ruff's import organizer
@@ -84,8 +82,11 @@ local server_settings = {
 }
 
 -- Ensure the servers above are installed
+-- But do not enable (avoid duplicate setup)
 require('mason-lspconfig').setup {
   ensure_installed = servers,
+  automatic_enable = false,
+
 }
 
 -- nvim-cmp supports additional completion capabilities
@@ -108,6 +109,13 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
+-- Delete default lsp keymaps that make "gr" slow
+-- (go to references, custom keymap I setup above)
+-- Or just use grr
+vim.keymap.del('n', 'gri')
+vim.keymap.del('n', 'grr')
+vim.keymap.del('n', 'gra')
+vim.keymap.del('n', 'grn')
 
 
 -- Python virtual env detection
