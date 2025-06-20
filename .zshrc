@@ -102,11 +102,17 @@ alias cat='bat -pp'
 alias lg=lazygit
 # alias leet="nvim leetcode.nvim"
 
-# AI/LLM
+# Ollama
 alias llm_gs="llm -m gemma3:4b "
 alias llm_gm="llm -m gemma3:12b "
 alias llm_gl="llm -m gemma3:27b "
+
+# Local LLM tools
 alias llm_cat_dir="find . -maxdepth 1 -type f | xargs -I {} sh -c 'echo \"\n=== {} ===\n\"; cat {}'"
+alias zc2git="mcphost --system-prompt ~/pro/zazencodes-season-2/src/mcphub/zc_season_2_git.json -m anthropic:claude-sonnet-4-0"
+
+# Claude Code
+ayima_claude_code() { export ANTHROPIC_API_KEY=$AYIMA_ANTHROPIC_API_KEY && claude }
 
 # Dir list, nav
 alias pwdy="echo $(pwd) | pbcopy"
@@ -151,3 +157,7 @@ if [ -f '/Users/alex/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alex
 
 # Added by Windsurf
 # export PATH="/Users/alex/.codeium/windsurf/bin:$PATH"
+
+# Scripts
+alias ayima_search_volumes="$HOME/virtualenvs/adhoc/bin/python $HOME/apro/ad-hoc-python-scripts/semrush-api/keyword-overview/get_keyword_overview.py"
+
