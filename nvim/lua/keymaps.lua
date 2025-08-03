@@ -56,8 +56,8 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- move 5 lines up/down with arrow keys
-vim.keymap.set("n", "<Down>", "5j")
-vim.keymap.set("n", "<Up>", "5k")
+vim.keymap.set("n", "<Down>", "5jzz")
+vim.keymap.set("n", "<Up>", "5kzz")
 
 -- decrement integers with Ctrl-b
 vim.keymap.set("n", "<C-b>", "<C-a>")
