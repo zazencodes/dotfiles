@@ -118,7 +118,7 @@ nvim/
 
 ## 📝 Obsidian Workflow (`lua/workflows.lua`)
 
-**Vault Path:** `/Users/alex/library/Mobile Documents/iCloud~md~obsidian/Documents/ZazenCodes`
+**Vault Path:** `/Users/alex/obsidian/ZazenCodes`
 
 **Workflow Keymaps:**
 - `<leader>oo` - Navigate to vault

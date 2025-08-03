@@ -2,7 +2,7 @@ require("obsidian").setup({
   workspaces = {
     {
         name = "ZazenCodes",
-        path = "/Users/alex/library/Mobile Documents/iCloud~md~obsidian/Documents/ZazenCodes",
+        path = "/Users/alex/obsidian/ZazenCodes",
       },
   },
   notes_subdir = "inbox",

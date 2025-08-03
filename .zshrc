@@ -91,6 +91,8 @@ alias ou='cd $HOME/pro/notion-obsidian-sync-zazencodes && node batchUpload.js --
 alias nvc='cd $HOME/.config/nvim && vim'
 alias zc='cd $HOME/pro/zazencodes-season-2/src'
 alias cmcp='vim $HOME/Library/Application\ Support/Claude/claude_desktop_config.json'
+alias gmcp='vim $HOME/.gemini/settings.json'
+alias devlogs='vim $HOME/pro/devlogs'
 
 # App aliases
 alias cat='bat -pp'
@@ -110,12 +112,12 @@ alias llm_gl="llm -m gemma3:27b "
 # Local LLM tools
 alias llm_cat_dir="find . -maxdepth 1 -type f | xargs -I {} sh -c 'echo \"\n=== {} ===\n\"; cat {}'"
 alias zc2git="mcphost --system-prompt ~/pro/zazencodes-season-2/src/mcphub/zc_season_2_git.json -m anthropic:claude-sonnet-4-0"
+alias fgemini="export GEMINI_MODEL='gemini-2.5-flash' && gemini"
 
 # Claude Code
 ayima_claude_code() { export ANTHROPIC_API_KEY=$AYIMA_ANTHROPIC_API_KEY && claude }
 
 # Dir list, nav
-alias pwdy="echo $(pwd) | pbcopy"
 alias cl="clear"
 alias z="cd"
 # alias lr="ls -lrt"
@@ -125,6 +127,25 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
+
+# cd to latest dir
+zr() {
+  # (*(/om[1]) → *    : all names
+  #              /    : only directories
+  #              o    : order by oldest first
+  #              m    : use modification time
+  #              [1]  : pick the 1st (i.e. newest) )
+  local target
+  target=(*(/om[1]))
+
+  if [[ -d $target ]]; then
+    cd -- "$target"
+  else
+    echo "cdr: no subdirectories found" >&2
+    return 1
+  fi
+}
+
 
 # Colors
 # alias ls="ls -G"

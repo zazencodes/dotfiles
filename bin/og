@@ -1,10 +1,10 @@
 #!/bin/zsh
 
 # Directory containing markdown files
-VAULT_DIR="/Users/alex/library/Mobile Documents/iCloud~md~obsidian/Documents/ZazenCodes"
+# VAULT_DIR="/Users/alex/library/Mobile Documents/iCloud~md~obsidian/Documents/ZazenCodes"
+VAULT_DIR="/Users/alex/obsidian/ZazenCodes"
 SOURCE_DIR="zettelkasten"
 DEST_DIR="notes"
-
 
 # Iterate through all markdown files in the source directory
 find "$VAULT_DIR/$SOURCE_DIR" -type f -name "*.md" | while read -r file; do
