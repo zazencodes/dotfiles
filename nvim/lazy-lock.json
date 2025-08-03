@@ -8,6 +8,7 @@
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
   "codecompanion.nvim": { "branch": "main", "commit": "c738cada5027d86ca71cf429139797273762f037" },
   "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
+  "emoji.nvim": { "branch": "main", "commit": "5c68359b56d2470583832b6b2b559566c5b39dc8" },
   "fidget.nvim": { "branch": "main", "commit": "d9ba6b7bfe29b3119a610892af67602641da778e" },
   "fzf-lua": { "branch": "main", "commit": "d6b5b801ba26322e6551e39520ff64736a452255" },
   "gitsigns.nvim": { "branch": "main", "commit": "8b729e489f1475615dc6c9737da917b3bc163605" },
