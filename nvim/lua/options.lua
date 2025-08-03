@@ -79,10 +79,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 }) -- highlight yanked text using the 'IncSearch' highlight group for 40ms
 
 local CleanOnSave = vim.api.nvim_create_augroup('CleanOnSave', {})
-vim.api.nvim_create_autocmd({"BufWritePre"}, {
+vim.api.nvim_create_autocmd('BufWritePre', {
   group = CleanOnSave,
-  pattern = "*",
-  command = [[%s/\s\+$//e]],
+  pattern = '*',
+  callback = function(ev)
+    if vim.bo[ev.buf].filetype == 'markdown' then
+    -- do not change markdown files (breaks newlines)
+      return
+    end
+    vim.cmd([[%s/\s\+$//e]])
+  end,
 }) -- remove trailing whitespace from all lines before saving a file)
 
 -- local Black = vim.api.nvim_create_augroup("Black", { clear = true })
