@@ -12,6 +12,7 @@ bindkey "^[[1;3D" backward-word
 
 # Extend PATH
 export PATH="$PATH:/opt/homebrew/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 # export PATH="/opt/homebrew/opt/openjdk/bin:$PATH" # Add homebrew java to path
 # export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
@@ -44,11 +45,11 @@ _fzf_compgen_dir() {
 
 # eza
 export EZA_COLORS="ur=0:uw=0:ux=0:ue=0:gr=0:gw=0:gx=0:tr=0:tw=0:tx=0:su=0:sf=0:oc=0:xa=0:uu=0:uR=0:un=0:gu=0:gR=0:gn=0:lc=0:lm=0:sn=0:nb=0:nk=0:nm=0:ng=0:nt=0"
-alias ls="eza --long --icons=always"
+alias ls="eza -1 --icons=always"
 alias lr="eza --long --icons=always --sort=newest"
-alias lt="eza --long --icons=always -T"
-alias lt2="eza --long --icons=always -T -L=2"
-alias lt3="eza --long --icons=always -T -L=3"
+alias lt="eza -1 --icons=always -T"
+alias ltt="eza -1 --icons=always -T -L=2"
+alias lttt="eza -1 --icons=always -T -L=3"
 
 # Tmux
 alias t=tmux
@@ -86,6 +87,7 @@ nn() { touch ~/Downloads/$1 && mate $1 }
 alias oo='cd $HOME/obsidian/ZazenCodes'
 alias or='vim $HOME/obsidian/ZazenCodes/inbox/*.md'
 alias ou='cd $HOME/pro/notion-obsidian-sync-zazencodes && node batchUpload.js --lastmod-days-window 5'
+alias cd_obsidian_cloud="cd '/Users/alex/Library/Mobile Documents/iCloud~md~obsidian/Documents'"
 
 # Path shortcuts
 alias nvc='cd $HOME/.config/nvim && vim'
@@ -113,9 +115,6 @@ alias llm_gl="llm -m gemma3:27b "
 alias llm_cat_dir="find . -maxdepth 1 -type f | xargs -I {} sh -c 'echo \"\n=== {} ===\n\"; cat {}'"
 alias zc2git="mcphost --system-prompt ~/pro/zazencodes-season-2/src/mcphub/zc_season_2_git.json -m anthropic:claude-sonnet-4-0"
 alias fgemini="export GEMINI_MODEL='gemini-2.5-flash' && gemini"
-
-# Claude Code
-ayima_claude_code() { export ANTHROPIC_API_KEY=$AYIMA_ANTHROPIC_API_KEY && claude }
 
 # Dir list, nav
 alias cl="clear"
@@ -182,3 +181,6 @@ if [ -f '/Users/alex/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alex
 # Scripts
 alias ayima_search_volumes="$HOME/virtualenvs/adhoc/bin/python $HOME/apro/ad-hoc-python-scripts/semrush-api/keyword-overview/get_keyword_overview.py"
 
+
+# Added by Antigravity
+export PATH="/Users/alex/.antigravity/antigravity/bin:$PATH"
