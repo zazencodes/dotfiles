@@ -49,17 +49,29 @@ require('lazy').setup({
           map('n', '<leader>hp', gitsigns.preview_hunk)
           map('n', '<leader>hi', gitsigns.preview_hunk_inline)
 
-          map('n', '<leader>hd', gitsigns.diffthis)
+          -- Diff against uncommitted changes
+          map('n', '<leader>hD', gitsigns.diffthis)
 
-          map('n', '<leader>hD', function()
-            gitsigns.diffthis('~')
-          end)
+          -- Diff against HEAD~{count}; default count=1 if none given
+          map('n', '<leader>hd', function()
+            local n = vim.v.count1            -- 1 if you didn’t type a count
+            require('gitsigns').diffthis('HEAD~' .. n)
+          end, { desc = 'gitsigns: diff HEAD~{count}' })
 
           map('n', '<leader>hQ', function() gitsigns.setqflist('all') end)
           map('n', '<leader>hq', gitsigns.setqflist)
 
           -- Toggles
-          map('n', '<leader>tw', gitsigns.toggle_word_diff)
+          map('n', '<leader>hw', gitsigns.toggle_word_diff)
+
+          -- Blame (popup for current line)
+          map('n', '<leader>hb', function()
+            gitsigns.blame_line()
+          end, { desc = 'gitsigns: blame line (full)' })
+
+          -- Blame (whole buffer)
+          map('n', '<leader>hB', '<Cmd>Gitsigns blame<CR>', { desc = 'gitsigns: blame buffer' })
+
         end
       }
     end
@@ -308,54 +320,54 @@ require('lazy').setup({
   { "nvim-treesitter/nvim-treesitter" },
   { "nvim-treesitter/playground" },
 
-  {
-    'kristijanhusak/vim-dadbod-ui',
-    dependencies = {
-      { 'tpope/vim-dadbod', lazy = true },
-      { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true }, -- Optional
-    },
-    cmd = {
-      'DBUI',
-      'DBUIToggle',
-      'DBUIAddConnection',
-      'DBUIFindBuffer',
-    },
-    init = function()
-      -- Your DBUI configuration
-      vim.g.db_ui_use_nerd_fonts = 1
-      vim.g.db_ui_execute_on_save = 0
-    end,
-  },
+  -- {
+  --   'kristijanhusak/vim-dadbod-ui',
+  --   dependencies = {
+  --     { 'tpope/vim-dadbod', lazy = true },
+  --     { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true }, -- Optional
+  --   },
+  --   cmd = {
+  --     'DBUI',
+  --     'DBUIToggle',
+  --     'DBUIAddConnection',
+  --     'DBUIFindBuffer',
+  --   },
+  --   init = function()
+  --     -- Your DBUI configuration
+  --     vim.g.db_ui_use_nerd_fonts = 1
+  --     vim.g.db_ui_execute_on_save = 0
+  --   end,
+  -- },
 
-  {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-      require("codecompanion").setup({
-        strategies = {
-          chat = {
-            adapter = "anthropic",
-          },
-          inline = {
-            adapter = "anthropic",
-          },
-        },
-        extensions = {
-          mcphub = {
-            callback = "mcphub.extensions.codecompanion",
-            opts = {
-              show_result_in_chat = true,  -- Show mcp tool results in chat
-              make_vars = true,            -- Convert resources to #variables
-              make_slash_commands = true,  -- Add prompts as /slash commands
-            }
-          }
-        }
-      })
-    end
-  },
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   config = function()
+  --     require("codecompanion").setup({
+  --       strategies = {
+  --         chat = {
+  --           adapter = "anthropic",
+  --         },
+  --         inline = {
+  --           adapter = "anthropic",
+  --         },
+  --       },
+  --       extensions = {
+  --         mcphub = {
+  --           callback = "mcphub.extensions.codecompanion",
+  --           opts = {
+  --             show_result_in_chat = true,  -- Show mcp tool results in chat
+  --             make_vars = true,            -- Convert resources to #variables
+  --             make_slash_commands = true,  -- Add prompts as /slash commands
+  --           }
+  --         }
+  --       }
+  --     })
+  --   end
+  -- },
 
   {
       "ravitemer/mcphub.nvim",
@@ -368,77 +380,77 @@ require('lazy').setup({
       end
   },
 
-  {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = false,
-    version = false, -- set this if you want to always pull the latest change
-    opts = {
-      provider = "claude",
-      claude = {
-        disable_tools = true, -- disable tools!
-        model = "claude-3.5-haiku-latest"
-        -- model = "claude-3-7-sonnet-latest",
-      },
-    },
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      "echasnovski/mini.pick", -- for file_selector provider mini.pick
-      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-      "ibhagwan/fzf-lua", -- for file_selector provider fzf
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      -- "zbirenbaum/copilot.lua", -- for providers='copilot'
-      {
-        -- support for image pasting
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
-      {
-        -- Make sure to set this up properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
-    },
-    config = function()
-      require("avante").setup({
-        -- system_prompt as function ensures LLM always has latest MCP server state
-        -- This is evaluated for every message, even in existing chats
-        system_prompt = function()
-            local hub = require("mcphub").get_hub_instance()
-            return hub and hub:get_active_servers_prompt() or ""
-        end,
-        -- Using function prevents requiring mcphub before it's loaded
-        custom_tools = function()
-            return {
-                require("mcphub.extensions.avante").mcp_tool(),
-            }
-        end,
-      })
-    end
-  },
+  -- {
+  --   "yetone/avante.nvim",
+  --   event = "VeryLazy",
+  --   lazy = false,
+  --   version = false, -- set this if you want to always pull the latest change
+  --   opts = {
+  --     provider = "claude",
+  --     claude = {
+  --       disable_tools = true, -- disable tools!
+  --       model = "claude-3.5-haiku-latest"
+  --       -- model = "claude-3-7-sonnet-latest",
+  --     },
+  --   },
+  --   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+  --   build = "make",
+  --   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "stevearc/dressing.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "MunifTanjim/nui.nvim",
+  --     --- The below dependencies are optional,
+  --     "echasnovski/mini.pick", -- for file_selector provider mini.pick
+  --     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+  --     "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+  --     "ibhagwan/fzf-lua", -- for file_selector provider fzf
+  --     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+  --     -- "zbirenbaum/copilot.lua", -- for providers='copilot'
+  --     {
+  --       -- support for image pasting
+  --       "HakonHarnes/img-clip.nvim",
+  --       event = "VeryLazy",
+  --       opts = {
+  --         -- recommended settings
+  --         default = {
+  --           embed_image_as_base64 = false,
+  --           prompt_for_file_name = false,
+  --           drag_and_drop = {
+  --             insert_mode = true,
+  --           },
+  --           -- required for Windows users
+  --           use_absolute_path = true,
+  --         },
+  --       },
+  --     },
+  --     {
+  --       -- Make sure to set this up properly if you have lazy=true
+  --       'MeanderingProgrammer/render-markdown.nvim',
+  --       opts = {
+  --         file_types = { "markdown", "Avante" },
+  --       },
+  --       ft = { "markdown", "Avante" },
+  --     },
+  --   },
+  --   config = function()
+  --     require("avante").setup({
+  --       -- system_prompt as function ensures LLM always has latest MCP server state
+  --       -- This is evaluated for every message, even in existing chats
+  --       system_prompt = function()
+  --           local hub = require("mcphub").get_hub_instance()
+  --           return hub and hub:get_active_servers_prompt() or ""
+  --       end,
+  --       -- Using function prevents requiring mcphub before it's loaded
+  --       custom_tools = function()
+  --           return {
+  --               require("mcphub.extensions.avante").mcp_tool(),
+  --           }
+  --       end,
+  --     })
+  --   end
+  -- },
 
   {
     "nomnivore/ollama.nvim",
