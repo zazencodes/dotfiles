@@ -1,7 +1,17 @@
 #!/bin/bash
+# Usage:
+#   ./symlink_dotfiles.sh bin
+#   ./symlink_dotfiles.sh opt
 
-DOTFILES_DIR=~/dotfiles/bin
-TARGET_DIR=~/bin
+if [ -z "$1" ]; then
+  echo "Usage: $(basename "$0") <folder>"
+  exit 1
+fi
+
+FOLDER="$1"
+
+DOTFILES_DIR=~/dotfiles/$FOLDER
+TARGET_DIR=~/$FOLDER
 
 for file in "$DOTFILES_DIR"/*; do
     filename=$(basename "$file")
@@ -16,3 +26,4 @@ for file in "$DOTFILES_DIR"/*; do
         echo "Created symlink: $target -> $file"
     fi
 done
+

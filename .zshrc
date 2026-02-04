@@ -181,6 +181,14 @@ if [ -f '/Users/alex/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alex
 # Scripts
 alias ayima_search_volumes="$HOME/virtualenvs/adhoc/bin/python $HOME/apro/ad-hoc-python-scripts/semrush-api/keyword-overview/get_keyword_overview.py"
 
+# Workflow shortcuts
+aura-sync() {
+  cd /Users/alex/apro/aura
+  echo "==> Local: pushing changes"
+  git push || true
+  echo "==> Remote: git pull on aura"
+  ssh aura 'cd /root/aura && git pull'
+}
 
 # Added by Antigravity
 export PATH="/Users/alex/.antigravity/antigravity/bin:$PATH"

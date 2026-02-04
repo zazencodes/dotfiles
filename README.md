@@ -23,9 +23,15 @@ rm -rf ~/Library/Application\ Support/io.datasette.llm/templates # delete if exi
 ln -s ~/dotfiles/llm/templates ~/Library/Application\ Support/io.datasette.llm
 ```
 
-## Scripts
+## `/bin`
+
+Bash scripts which are intended to be symlinked with `~/bin`
+
+These symlinks should be created one time, by running the following:
+
 ```bash
-./symlink_dotfiles.sh
+mkdir -p ~/bin
+./symlink_dotfiles.sh bin
 
 # Runs symlink command for each file in ~/dotfiles/bin
 # But ignores files that are already symlinked
@@ -33,4 +39,11 @@ ln -s ~/dotfiles/llm/templates ~/Library/Application\ Support/io.datasette.llm
 # ln -s ~/dotfiles/bin/on ~/bin/on
 ```
 
+## `/opt`
+
+Libraries which are intended to be symlinked with `~/opt`
+
+```bash
+mkdir -p ~/opt
+./symlink_dotfiles.sh opt
 
