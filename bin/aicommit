@@ -6,8 +6,6 @@ AGENT_SCRIPT="$HOME/opt/git_commit_agent.py"
 # Get the absolute path of the current working directory
 CURRENT_REPO=$(pwd)
 
-# Call the script
-# Note: We call the script directly because your shebang line
-# already points to the correct virtualenv python.
-echo "$AGENT_SCRIPT --repo \"$CURRENT_REPO\" $*"
-"$AGENT_SCRIPT" --repo "$CURRENT_REPO" "$@"
+# Execute python script through shebang command
+echo "$AGENT_SCRIPT --repo \"$CURRENT_REPO\" --push $*"
+"$AGENT_SCRIPT" --repo "$CURRENT_REPO" --push "$@"

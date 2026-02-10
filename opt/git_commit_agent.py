@@ -2,6 +2,8 @@
 # PyPI Dependencies: langchain langgraph langchain-ollama langchain-mcp-adapters
 import argparse
 import asyncio
+import subprocess
+import sys
 
 from langchain.agents import create_agent
 from langchain_core.globals import set_debug, set_verbose
@@ -15,7 +17,8 @@ from langchain_ollama import ChatOllama
 SYSTEM_PROMPT = """
 You are a git commit assistant. Your task is to use your tools to inspect the
 provided git repository and commit the changes. You should group files into
-cohesive subsets and commit them in batches.
+cohesive subsets and commit them in batches. Your commit messages should be
+short but suitably related to the content of the files that have been changed.
 """
 
 
@@ -26,6 +29,11 @@ async def main() -> None:
         "--model",
         default="gpt-oss:20b",
         help="Ollama model name (must support tool calling)",
+    )
+    p.add_argument(
+        "--push",
+        action="store_true",
+        help="After committing, run `git push` in the repo (pushes to the default upstream)",
     )
     args = p.parse_args()
 
@@ -62,9 +70,9 @@ async def main() -> None:
         # 2. CLEAN TOOL CALLS
         elif kind == "on_tool_start":
             # Filter out the 'runtime' and 'repo_path' to keep it tidy
-            args = event["data"].get("input", {})
+            tool_input = event["data"].get("input", {})
             clean_args = {
-                k: v for k, v in args.items() if k not in ["runtime", "repo_path"]
+                k: v for k, v in tool_input.items() if k not in ["runtime", "repo_path"]
             }
 
             print(f"🛠️  [TOOL]: {event['name']}")
@@ -83,6 +91,15 @@ async def main() -> None:
 
             print(f"📝 [RESULT]: {result_text.strip()}")
             print("-" * 40)
+
+    if args.push:
+        print("\n🚀 Pushing commits (`git push`)...")
+        try:
+            subprocess.run(["git", "-C", args.repo, "push"], check=True)
+            print("✅ Push complete.")
+        except subprocess.CalledProcessError as e:
+            print(f"❌ Push failed (exit {e.returncode}).", file=sys.stderr)
+            raise
 
 
 if __name__ == "__main__":
