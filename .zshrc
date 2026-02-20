@@ -53,6 +53,9 @@ alias lttt="eza -1 --icons=always -T -L=3"
 
 # Tmux
 alias t=tmux
+# Alt-d (ESC d) delete forward word
+bindkey -M viins '^[d' kill-word
+
 
 # Python
 # Use symlinks instead of aliases, for proper virtual env activation support
