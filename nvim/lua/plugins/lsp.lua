@@ -93,12 +93,17 @@ require('mason-lspconfig').setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
+vim.lsp.config('*', {
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+for lsp, settings in pairs(server_settings) do
+  vim.lsp.config(lsp, { settings = settings })
+end
+
 for _, lsp in ipairs(servers) do
-  require('lspconfig')[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = server_settings[lsp],
-  }
+  vim.lsp.enable(lsp)
 end
 
 -- Turn on lsp status information
