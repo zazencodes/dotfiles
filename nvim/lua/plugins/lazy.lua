@@ -136,7 +136,8 @@ require('lazy').setup({
         },
         code = {
           border = 'thick',
-          highlight_border = 'Normal',
+          -- highlight_border = 'Normal',
+          language = false,
         },
         checkbox = {
           unchecked = { icon = '󰄱' },
