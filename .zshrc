@@ -195,3 +195,6 @@ aura-sync() {
 
 # Added by Antigravity
 export PATH="/Users/alex/.antigravity/antigravity/bin:$PATH"
+
+# opencode
+export PATH=/Users/alex/.opencode/bin:$PATH
