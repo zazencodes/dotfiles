@@ -49,7 +49,7 @@ family = "DejaVuSansM Nerd Font Mono"
 
 [keyboard]
 bindings = [
-  { key = "F",     mods = "Alt", action = "ToggleSimpleFullscreen" },
+  { key = "F",     mods = "Control", action = "ToggleSimpleFullscreen" },
   { key = "Q",     mods = "Command",  action = "None" },
   # Bindings below allow word skipping with "Alt + Arrow" in tmux,
   # but interfere with pane resizing using Alt. Instead, use Ctrl + Arrow
