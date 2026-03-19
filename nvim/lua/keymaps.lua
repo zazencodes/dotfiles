@@ -116,4 +116,11 @@ end
 
 vim.keymap.set('n', '<leader>ti', toggle_checkbox, { noremap = true, silent = true })
 
+local function insert_date_header()
+    local date_line = "# " .. os.date("%Y-%m-%d")
+    local row = vim.api.nvim_win_get_cursor(0)[1] - 1
+    vim.api.nvim_buf_set_lines(0, row, row, false, { date_line })
+end
+
+vim.keymap.set('n', '<leader>dh', insert_date_header, { noremap = true, silent = true })
 
