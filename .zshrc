@@ -13,6 +13,7 @@ bindkey "^[[1;3D" backward-word
 # Extend PATH
 export PATH="$PATH:/opt/homebrew/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH" # postgres version 16
 # export PATH="/opt/homebrew/opt/openjdk/bin:$PATH" # Add homebrew java to path
 # export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
@@ -116,8 +117,10 @@ alias llm_gl="llm -m gemma3:27b "
 
 # Local LLM tools
 alias llm_cat_dir="find . -maxdepth 1 -type f | xargs -I {} sh -c 'echo \"\n=== {} ===\n\"; cat {}'"
-alias zc2git="mcphost --system-prompt ~/pro/zazencodes-season-2/src/mcphub/zc_season_2_git.json -m anthropic:claude-sonnet-4-0"
-alias fgemini="export GEMINI_MODEL='gemini-2.5-flash' && gemini"
+# alias zc2git="mcphost --system-prompt ~/pro/zazencodes-season-2/src/mcphub/zc_season_2_git.json -m anthropic:claude-sonnet-4-0"
+# alias fgemini="export GEMINI_MODEL='gemini-2.5-flash' && gemini"
+alias a="aichat -e"
+alias claude-zazencodes='CLAUDE_CONFIG_DIR="$HOME/.claude-zazencodes" claude'
 
 # Dir list, nav
 alias cl="clear"
