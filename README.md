@@ -17,6 +17,8 @@ ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.p10k.zsh ~/.p10k.zsh
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.aerospace.toml ~/.aerospace.toml
+mkdir ~/.hammerspoon
+ln -s ~/dotfiles/hammerspoon/init.lua ~/.hammerspoon/init.lua
 
 # llm cli tool templates
 # Do not run this until after you have installed llm
