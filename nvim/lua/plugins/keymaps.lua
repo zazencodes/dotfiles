@@ -3,7 +3,7 @@ vim.keymap.set("n", "<leader>fs", ":Telescope find_files<cr>") -- search project
 vim.keymap.set("n", "<leader>fp", ":Telescope git_files<cr>")  -- search git
 vim.keymap.set("n", "<leader>fo", ":Telescope oldfiles<cr>")   -- search old files
 vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>")    -- search buffers
-vim.keymap.set("n", "<leader>fz", ":Telescope live_grep<cr>")                       -- grep whole project
+vim.keymap.set("n", "<leader>fz", ":lua require('telescope.builtin').live_grep({ additional_args = function() return { '--hidden' } end })<cr>") -- grep whole project using ripgrep (ignore .gitignore)
 vim.keymap.set("n", "<leader>fg", ":Telescope live_grep grep_open_files=true<cr>")  -- grep open files
 vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<cr>")
 
