@@ -51,6 +51,8 @@ family = "DejaVuSansM Nerd Font Mono"
 bindings = [
   { key = "F",     mods = "Control", action = "ToggleSimpleFullscreen" },
   { key = "Q",     mods = "Command",  action = "None" },
+  { key = "R",     mods = "Command",  chars = "\u001B[CmdR~" },
+  { key = "S",     mods = "Command",  chars = "\u001B[CmdS~" },
   # Bindings below allow word skipping with "Alt + Arrow" in tmux,
   # but interfere with pane resizing using Alt. Instead, use Ctrl + Arrow
   # to resize panes (this alternative is available by default).
