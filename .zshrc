@@ -14,6 +14,8 @@ bindkey "^[[1;3D" backward-word
 export PATH="$PATH:/opt/homebrew/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH" # postgres version 16
+export PATH="/Users/alex/.antigravity/antigravity/bin:$PATH"
+export PATH=/Users/alex/.opencode/bin:$PATH
 # export PATH="/opt/homebrew/opt/openjdk/bin:$PATH" # Add homebrew java to path
 # export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
@@ -29,12 +31,19 @@ export EDITOR="$VISUAL"
 # fzf (Overrides and ctrl+r ctrl+t [cd with fuzzy search])
 # Need to install fd for commands below to work
 source <(fzf --zsh)
-export FZF_CTRL_R_OPTS="--height=1 --reverse --no-scrollbar"
 export FZF_CTRL_T_OPTS="--height 40% --no-scrollbar"
 export FZF_CTRL_T_COMMAND='fd --hidden --follow --exclude .git'
+export FZF_CTRL_R_OPTS="--height=40% --reverse --no-scrollbar"
+
+# Map Command+R (emitted by Alacritty as custom sequence) to classic history search
+# This is for situations where you don't want to reveal terminal history (screen sharing)
+# - Press Cmd+R repeatedly to keep searching BACKWARDS
+# - Press Cmd+S repeatedly to keep searching FORWARDS (find newer queries if you went too far)
+bindkey '\e[CmdR~' history-incremental-search-backward
+bindkey '\e[CmdS~' history-incremental-search-forward
 
 # cd widget using fd, ignore git and sort folders by depth (will fail for really large dirs, e.g. ~/)
-export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git . | awk -F'/' '{print NF-1, \$0}' | sort -n | cut -d' ' -f2-"
+# export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git . | awk -F'/' '{print NF-1, \$0}' | sort -n | cut -d' ' -f2-"
 # Use cd widget with Ctrl+O (default is Alt+C)
 bindkey '^G' fzf-cd-widget
 
@@ -196,8 +205,3 @@ aura-sync() {
   ssh aura 'cd /root/aura && git pull'
 }
 
-# Added by Antigravity
-export PATH="/Users/alex/.antigravity/antigravity/bin:$PATH"
-
-# opencode
-export PATH=/Users/alex/.opencode/bin:$PATH
