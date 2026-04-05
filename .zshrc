@@ -104,7 +104,7 @@ alias cd_obsidian_cloud="cd '/Users/alex/Library/Mobile Documents/iCloud~md~obsi
 
 # Path shortcuts
 alias nvc='cd $HOME/.config/nvim && vim'
-alias zc='cd $HOME/pro/zazencodes-season-2/src'
+alias zc='cd $HOME/pro/zazencodes-season-3/src'
 alias cmcp='vim $HOME/Library/Application\ Support/Claude/claude_desktop_config.json'
 alias gmcp='vim $HOME/.gemini/settings.json'
 alias devlogs='vim $HOME/pro/devlogs'
@@ -174,6 +174,11 @@ source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 # Installed with brew
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_HIGHLIGHT_STYLES[alias]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[function]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=green,bold'
 
 # This file (below) is generated when running p10k config for the first time
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

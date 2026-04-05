@@ -1,0 +1,32 @@
+# ~/.config/ghostty/config
+
+# Set theme
+# theme = Dracula+
+
+# Custom theme ~/.config/ghostty/themes/dracula-plus-custom
+# - slightly modified version of the (original dracula theme)[https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/ghostty/Dracula%2B]
+theme = dracula-plus-custom
+
+# Font
+font-family = DejaVuSansM Nerd Font Mono
+font-size = 16
+
+# Window Configuration
+title = " "
+macos-titlebar-proxy-icon = hidden
+window-padding-x = 5
+window-padding-y = 0
+window-width = 250
+window-height = 90
+macos-option-as-alt = true
+
+# Emulate previous Terminfo to maintain Neovim/Tmux compatibility
+term = xterm-256color
+
+# Action Keybindings
+keybind = ctrl+f=toggle_fullscreen
+keybind = cmd+q=ignore
+
+# Custom Escape Sequences
+keybind = cmd+r=text:\x1b[CmdR~
+keybind = cmd+s=text:\x1b[CmdS~

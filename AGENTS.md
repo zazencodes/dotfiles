@@ -15,7 +15,7 @@ This repository stores configuration files centrally and symlinks them to their 
 ## High-Level Architecture
 
 - **Standalone Configurations:** Configurations like `.zshrc`, `.tmux.conf`, and `.gitconfig` sit at the root and track directly to `~`.
-- **Directory Configurations:** Configurations like `nvim/` and `alacritty/` track to `~/.config/`.
+- **Directory Configurations:** Configurations like `nvim/`, `ghostty/` and `alacritty/` track to `~/.config/`.
 - **Scripts and Binaries:** Small executable scripts live in `bin/` (symlinked to `~/bin`), while utility libraries or python scripts live in `opt/` (symlinked to `~/opt`).
 - **Symlinking Script:** `symlink_dotfiles.sh` is a helper script used to run automated symlinking of directories like `bin` and `opt`.
 
@@ -25,6 +25,7 @@ This repository stores configuration files centrally and symlinks them to their 
 - **`.zshrc`**: The primary Zsh shell configuration, handling aliases, environment variables, and initialization of tools.
 - **`.p10k.zsh`**: Powerlevel10k theme configuration for styling the Zsh prompt.
 - **`.tmux.conf`**: Configuration for tmux, optimizing keybinds, status bar aesthetics, and plugins.
+- **`ghostty/`**: Configuration for the Ghostty terminal emulator (specifically `config`).
 - **`alacritty/`**: Configuration for the Alacritty GPU-accelerated terminal emulator (specifically `alacritty.toml`).
 
 ### macOS Environment & Automation
