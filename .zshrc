@@ -9,6 +9,11 @@ export LANG=en_US.UTF-8
 # https://chatgpt.com/c/a7b8eecc-e9d4-490d-9379-583c954945e3
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
+# Ghostty in tmux currently sends Alt+Right/Left as Esc-f / Esc-b
+bindkey '^[f' forward-word
+bindkey '^[b' backward-word
+bindkey -M viins '^[f' forward-word
+bindkey -M viins '^[b' backward-word
 
 # Extend PATH
 export PATH="$PATH:/opt/homebrew/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
@@ -42,10 +47,22 @@ export FZF_CTRL_R_OPTS="--height=40% --reverse --no-scrollbar"
 bindkey '\e[CmdR~' history-incremental-search-backward
 bindkey '\e[CmdS~' history-incremental-search-forward
 
-# cd widget using fd, ignore git and sort folders by depth (will fail for really large dirs, e.g. ~/)
-# export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git . | awk -F'/' '{print NF-1, \$0}' | sort -n | cut -d' ' -f2-"
-# Use cd widget with Ctrl+O (default is Alt+C)
-bindkey '^G' fzf-cd-widget
+# cd widgets
+_fzf_cd_widget_local() {
+  local FZF_ALT_C_COMMAND='fd --type d --max-depth 1 --hidden --follow --exclude .git .'
+  zle fzf-cd-widget
+}
+zle -N _fzf_cd_widget_local
+
+_fzf_cd_widget_recursive() {
+  local FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git . | awk -F'/' '{print NF-1, \$0}' | sort -n | cut -d' ' -f2-"
+  zle fzf-cd-widget
+}
+zle -N _fzf_cd_widget_recursive
+
+# Use Ctrl+G for local cwd directories and Ctrl+F for recursive directory search
+bindkey '^E' _fzf_cd_widget_local
+bindkey '^G' _fzf_cd_widget_recursive
 
 # **<tab> using fd, ignore git and sort folders by depth (will fail for really large dirs, e.g. ~/)
 _fzf_compgen_dir() {
@@ -210,3 +227,5 @@ aura-sync() {
   ssh aura 'cd /root/aura && git pull'
 }
 
+# Added by Antigravity
+export PATH="/Users/alex/.antigravity/antigravity/bin:$PATH"

@@ -41,7 +41,8 @@ The `bin/` directory contains helper shell scripts meant to be placed in the use
 - **`on` & `og`**: Scripts built specifically to automate creating and moving notes directly into the user's Obsidian (`ZazenCodes`) vault.
 - **`aicommit`**: A bash wrapper script that simply executes a python AI tool for generating git commits.
 - **`opt/git_commit_agent.py`**: The underlying Python script invoked by `aicommit`.
+- **`rip_transcript`**: A bash wrapper that transcribes audio or video files and writes transcript artifacts next to the source media.
+- **`opt/rip_transcript.py`**: The underlying Python script invoked by `rip_transcript`, using `mlx_whisper` to generate plain text, timestamped text, and raw JSON outputs.
 
 ### AI Tooling
 - **`llm/`**: Contains prompt templates intended to be symlinked to `~/Library/Application Support/io.datasette.llm`, configuring the LLM CLI tool.
-

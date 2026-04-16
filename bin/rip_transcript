@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TRANSCRIPT_SCRIPT="${SCRIPT_DIR%/bin}/opt/rip_transcript.py"
+DEFAULT_PYTHON="$HOME/pro/zazencodes-automations/.venv/bin/python"
+
+if [ -n "${TRANSCRIPT_PYTHON:-}" ]; then
+  PYTHON_BIN="$TRANSCRIPT_PYTHON"
+elif [ -x "$DEFAULT_PYTHON" ]; then
+  PYTHON_BIN="$DEFAULT_PYTHON"
+elif command -v python3 >/dev/null 2>&1; then
+  PYTHON_BIN="$(command -v python3)"
+else
+  echo "Error: No Python runtime found. Set TRANSCRIPT_PYTHON to a Python with mlx_whisper installed." >&2
+  exit 1
+fi
+
+if [ ! -f "$TRANSCRIPT_SCRIPT" ]; then
+  echo "Error: Could not find transcription script at $TRANSCRIPT_SCRIPT." >&2
+  echo "Run ./symlink_dotfiles.sh opt if ~/opt is missing the latest scripts." >&2
+  exit 1
+fi
+
+exec "$PYTHON_BIN" "$TRANSCRIPT_SCRIPT" "$@"
