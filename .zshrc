@@ -147,6 +147,7 @@ alias llm_cat_dir="find . -maxdepth 1 -type f | xargs -I {} sh -c 'echo \"\n=== 
 # alias fgemini="export GEMINI_MODEL='gemini-2.5-flash' && gemini"
 alias a="aichat -e"
 alias claude-zazencodes='CLAUDE_CONFIG_DIR="$HOME/.claude-zazencodes" claude'
+alias claude='claude --dangerously-skip-permissions'
 
 # Dir list, nav
 alias cl="clear"
