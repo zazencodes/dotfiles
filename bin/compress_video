@@ -1,0 +1,272 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DEFAULT_AUDIO_KBPS=128
+MIN_AUDIO_KBPS=48
+MIN_VIDEO_KBPS=250
+MAX_ATTEMPTS=6
+MIN_OVERHEAD_BYTES=262144
+
+show_error() {
+  echo "Error: $*" >&2
+  exit 1
+}
+
+file_size_bytes() {
+  if stat -f%z "$1" >/dev/null 2>&1; then
+    stat -f%z "$1"
+  else
+    stat -c%s "$1"
+  fi
+}
+
+choose_audio_kbps() {
+  local total_kbps="$1"
+  local audio_kbps=$((total_kbps / 12))
+
+  if [ "$audio_kbps" -lt "$MIN_AUDIO_KBPS" ]; then
+    audio_kbps="$MIN_AUDIO_KBPS"
+  fi
+
+  if [ "$audio_kbps" -gt "$DEFAULT_AUDIO_KBPS" ]; then
+    audio_kbps="$DEFAULT_AUDIO_KBPS"
+  fi
+
+  echo "$audio_kbps"
+}
+
+show_help() {
+  cat <<EOF
+Usage: $(basename "$0") <input_video> <target_size_mb> [output_file] [max_width]
+
+Compress a video so the output file is smaller than the requested target size.
+
+Arguments:
+  input_video      Input video file (MP4, MOV, or other ffmpeg-readable format)
+  target_size_mb   Desired maximum output size in decimal megabytes
+                   1 MB = 1,000,000 bytes
+  output_file      Optional output filename
+                   Default: <input_basename>_compressed.mp4
+  max_width        Optional maximum output width in pixels
+                   Example: 1920 or 1280
+                   Omit to keep original resolution
+
+Examples:
+  $(basename "$0") "Screen Recording 2026-04-14 at 9.50.05 PM.mov" 950
+  $(basename "$0") input.mp4 800
+  $(basename "$0") input.mp4 800 output.mp4
+  $(basename "$0") input.mov 500 output.mp4 1920
+
+Notes:
+  - Output is always MP4 using H.264 video and AAC audio.
+  - The script verifies the actual file size after encoding and retries with a
+    lower bitrate if needed.
+  - If the requested size is too aggressive for the source duration/resolution,
+    the script exits with an error instead of returning an oversized file.
+  - For least compression, omit max_width first.
+EOF
+}
+
+if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
+  show_help
+  exit 0
+fi
+
+if [ "$#" -lt 2 ] || [ "$#" -gt 4 ]; then
+  echo "Usage: $(basename "$0") <input_video> <target_size_mb> [output_file] [max_width]"
+  echo "Try: $(basename "$0") --help"
+  exit 1
+fi
+
+INPUT="$1"
+TARGET_MB="$2"
+OUTPUT="${3:-${INPUT%.*}_compressed.mp4}"
+MAX_WIDTH="${4:-}"
+
+if ! command -v ffmpeg >/dev/null 2>&1; then
+  show_error "ffmpeg not found"
+fi
+
+if ! command -v ffprobe >/dev/null 2>&1; then
+  show_error "ffprobe not found"
+fi
+
+if [ ! -f "$INPUT" ]; then
+  show_error "input file not found: $INPUT"
+fi
+
+if ! [[ "$TARGET_MB" =~ ^[0-9]+([.][0-9]+)?$ ]]; then
+  show_error "target_size_mb must be a number"
+fi
+
+if [ -n "$MAX_WIDTH" ] && ! [[ "$MAX_WIDTH" =~ ^[0-9]+$ ]]; then
+  show_error "max_width must be an integer"
+fi
+
+if [ "$INPUT" = "$OUTPUT" ]; then
+  show_error "output file must be different from the input file"
+fi
+
+TARGET_BYTES="$(awk -v mb="$TARGET_MB" 'BEGIN {
+  printf "%.0f", mb * 1000000
+}')"
+
+if [ "$TARGET_BYTES" -le 0 ]; then
+  show_error "target_size_mb must be greater than zero"
+fi
+
+DURATION="$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$INPUT")"
+
+if [ -z "$DURATION" ] || [ "$DURATION" = "N/A" ]; then
+  show_error "could not read duration from input file"
+fi
+
+HAS_AUDIO=0
+if [ -n "$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_type -of csv=p=0 "$INPUT")" ]; then
+  HAS_AUDIO=1
+fi
+
+OVERHEAD_BYTES="$(awk -v target="$TARGET_BYTES" -v min_overhead="$MIN_OVERHEAD_BYTES" 'BEGIN {
+  overhead = int(target * 0.01)
+  if (overhead < min_overhead) {
+    overhead = min_overhead
+  }
+  printf "%.0f", overhead
+}')"
+
+EFFECTIVE_TARGET_BYTES=$((TARGET_BYTES - OVERHEAD_BYTES))
+if [ "$EFFECTIVE_TARGET_BYTES" -le 0 ]; then
+  show_error "target_size_mb is too small after reserving MP4 overhead"
+fi
+
+TOTAL_KBPS="$(awk -v bytes="$EFFECTIVE_TARGET_BYTES" -v dur="$DURATION" 'BEGIN {
+  printf "%.0f", (bytes * 8) / dur / 1000
+}')"
+
+if [ "$TOTAL_KBPS" -le 0 ]; then
+  show_error "calculated total bitrate is invalid"
+fi
+
+if [ "$HAS_AUDIO" -eq 1 ]; then
+  AUDIO_KBPS="$(choose_audio_kbps "$TOTAL_KBPS")"
+else
+  AUDIO_KBPS=0
+fi
+
+VIDEO_KBPS=$((TOTAL_KBPS - AUDIO_KBPS))
+
+if [ "$VIDEO_KBPS" -lt "$MIN_VIDEO_KBPS" ]; then
+  show_error "calculated video bitrate is too low (${VIDEO_KBPS}k). Try increasing target_size_mb or using a smaller max_width."
+fi
+
+if [ -n "$MAX_WIDTH" ] && [ "$MAX_WIDTH" -le 0 ]; then
+  show_error "max_width must be greater than zero"
+fi
+
+declare -a VF
+if [ -n "$MAX_WIDTH" ]; then
+  VF=(-vf "scale='min(${MAX_WIDTH},iw)':-2")
+else
+  VF=("")
+fi
+
+TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/compress_video.XXXXXX")"
+PASSLOG="${TMP_DIR}/ffmpeg2pass"
+TEMP_OUTPUT="${TMP_DIR}/output.mp4"
+
+cleanup() {
+  rm -rf "$TMP_DIR" 2>/dev/null || true
+}
+trap cleanup EXIT
+
+INPUT_BYTES="$(file_size_bytes "$INPUT")"
+
+echo "Input:          $INPUT"
+echo "Output:         $OUTPUT"
+echo "Duration:       ${DURATION}s"
+echo "Input size:     ${INPUT_BYTES} bytes"
+echo "Target size:    ${TARGET_BYTES} bytes (${TARGET_MB} MB)"
+if [ "$HAS_AUDIO" -eq 1 ]; then
+  echo "Audio bitrate:  ${AUDIO_KBPS}k"
+else
+  echo "Audio bitrate:  none"
+fi
+echo "Video bitrate:  ${VIDEO_KBPS}k"
+if [ -n "$MAX_WIDTH" ]; then
+  echo "Max width:      $MAX_WIDTH"
+else
+  echo "Max width:      original"
+fi
+
+ATTEMPT=1
+CURRENT_VIDEO_KBPS="$VIDEO_KBPS"
+
+while [ "$ATTEMPT" -le "$MAX_ATTEMPTS" ]; do
+  rm -f "$TEMP_OUTPUT" "${PASSLOG}"*
+  echo
+  echo "Attempt ${ATTEMPT}/${MAX_ATTEMPTS}: encoding at ${CURRENT_VIDEO_KBPS}k video bitrate"
+
+  ffmpeg -y -i "$INPUT" \
+    -c:v libx264 \
+    -b:v "${CURRENT_VIDEO_KBPS}k" \
+    -preset medium \
+    "${VF[@]:1}" \
+    -pass 1 \
+    -passlogfile "$PASSLOG" \
+    -an \
+    -f mp4 \
+    /dev/null
+
+  if [ "$HAS_AUDIO" -eq 1 ]; then
+    ffmpeg -y -i "$INPUT" \
+      -c:v libx264 \
+      -b:v "${CURRENT_VIDEO_KBPS}k" \
+      -preset medium \
+      "${VF[@]:1}" \
+      -pass 2 \
+      -passlogfile "$PASSLOG" \
+      -c:a aac \
+      -b:a "${AUDIO_KBPS}k" \
+      -movflags +faststart \
+      "$TEMP_OUTPUT"
+  else
+    ffmpeg -y -i "$INPUT" \
+      -c:v libx264 \
+      -b:v "${CURRENT_VIDEO_KBPS}k" \
+      -preset medium \
+      "${VF[@]:1}" \
+      -pass 2 \
+      -passlogfile "$PASSLOG" \
+      -an \
+      -movflags +faststart \
+      "$TEMP_OUTPUT"
+  fi
+
+  OUTPUT_BYTES="$(file_size_bytes "$TEMP_OUTPUT")"
+  echo "Actual size:    ${OUTPUT_BYTES} bytes"
+
+  if [ "$OUTPUT_BYTES" -le "$TARGET_BYTES" ]; then
+    mv -f "$TEMP_OUTPUT" "$OUTPUT"
+    echo
+    echo "Done: $OUTPUT"
+    ls -lh "$OUTPUT"
+    exit 0
+  fi
+
+  NEXT_VIDEO_KBPS="$(awk -v current="$CURRENT_VIDEO_KBPS" -v target="$TARGET_BYTES" -v actual="$OUTPUT_BYTES" 'BEGIN {
+    printf "%.0f", current * (target / actual) * 0.97
+  }')"
+
+  if [ "$NEXT_VIDEO_KBPS" -ge "$CURRENT_VIDEO_KBPS" ]; then
+    NEXT_VIDEO_KBPS=$((CURRENT_VIDEO_KBPS - 25))
+  fi
+
+  if [ "$NEXT_VIDEO_KBPS" -lt "$MIN_VIDEO_KBPS" ]; then
+    show_error "could not reach the requested size without dropping below the minimum video bitrate (${MIN_VIDEO_KBPS}k). Try increasing target_size_mb or using a smaller max_width."
+  fi
+
+  CURRENT_VIDEO_KBPS="$NEXT_VIDEO_KBPS"
+  ATTEMPT=$((ATTEMPT + 1))
+done
+
+show_error "failed to produce an output under ${TARGET_MB} MB after ${MAX_ATTEMPTS} attempts"
