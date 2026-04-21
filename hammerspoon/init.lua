@@ -11,6 +11,17 @@ local EDGE_STEP = 200
 local UNIFORM_STEP = 280
 local MIN_W = 260
 local MIN_H = 180
+local IMAGE_PASTE_MODS = {"ctrl", "shift"}
+local IMAGE_PASTE_KEY = "v"
+local IMAGE_PASTE_MAX_EDGE = 1600
+local IMAGE_PASTE_SCALE = 0.5
+local IMAGE_PASTE_MIN_EDGE = 1
+local IMAGE_PASTE_PASTE_DELAY = 0.15
+local IMAGE_PASTE_RESTORE_DELAY = 1.0
+local IMAGE_PASTE_DEBUG_ALERTS = true
+local IMAGE_PASTE_SEND_MODS = {"ctrl"}
+
+local log = hs.logger.new("init", "info")
 
 local function withFocusedWindow(apply)
   return function()
@@ -45,6 +56,75 @@ end
 local function translate(f, dx, dy)
   f.x = f.x + dx
   f.y = f.y + dy
+end
+
+local function showPasteDebug(message)
+  log.i(message)
+
+  if IMAGE_PASTE_DEBUG_ALERTS then
+    hs.alert.show(message, 1.2)
+  end
+end
+
+local function pasteDownsizedClipboardImage()
+  local pasteboard = hs.pasteboard
+  local originalContents = pasteboard.readAllData()
+  local image = pasteboard.readImage()
+  local contentTypes = pasteboard.contentTypes() or {}
+
+  showPasteDebug("Image paste shortcut triggered")
+  log.i("Pasteboard content types: " .. hs.inspect(contentTypes))
+
+  if not image then
+    showPasteDebug("No image on clipboard; sending normal paste")
+    hs.timer.doAfter(IMAGE_PASTE_PASTE_DELAY, function()
+      hs.eventtap.keyStroke(IMAGE_PASTE_SEND_MODS, "v")
+    end)
+    return
+  end
+
+  local imageSize = image:size()
+  local longestEdge = math.max(imageSize.w, imageSize.h)
+  showPasteDebug(string.format(
+    "Clipboard image detected: %.0fx%.0f",
+    imageSize.w,
+    imageSize.h
+  ))
+
+  local scale = IMAGE_PASTE_SCALE
+  if longestEdge * scale > IMAGE_PASTE_MAX_EDGE then
+    scale = IMAGE_PASTE_MAX_EDGE / longestEdge
+  end
+
+  local targetSize = {
+    w = math.max(IMAGE_PASTE_MIN_EDGE, math.floor(imageSize.w * scale + 0.5)),
+    h = math.max(IMAGE_PASTE_MIN_EDGE, math.floor(imageSize.h * scale + 0.5)),
+  }
+  local downsizedImage = image:bitmapRepresentation(targetSize)
+
+  if not downsizedImage or not pasteboard.writeObjects(downsizedImage) then
+    showPasteDebug("Image resize paste failed")
+    return
+  end
+
+  showPasteDebug(string.format(
+    "Pasting downsized image: %dx%d",
+    targetSize.w,
+    targetSize.h
+  ))
+  hs.timer.doAfter(IMAGE_PASTE_PASTE_DELAY, function()
+    hs.eventtap.keyStroke(IMAGE_PASTE_SEND_MODS, "v")
+
+    if originalContents then
+      hs.timer.doAfter(IMAGE_PASTE_RESTORE_DELAY, function()
+        if pasteboard.writeAllData(originalContents) then
+          log.i("Original clipboard restored")
+        else
+          log.e("Failed to restore original clipboard")
+        end
+      end)
+    end
+  end)
 end
 
 -- h: shrink width, keep centered
@@ -97,3 +177,6 @@ end))
 bind(moveMods, "k", withFocusedWindow(function(f)
   translate(f, 0, -EDGE_STEP)
 end))
+
+-- ctrl+shift+v: paste a downsized clipboard image, or normal paste for non-images
+hs.hotkey.bind(IMAGE_PASTE_MODS, IMAGE_PASTE_KEY, pasteDownsizedClipboardImage)
