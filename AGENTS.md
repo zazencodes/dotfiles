@@ -26,6 +26,13 @@ This repository stores configuration files centrally and symlinks them to their 
 - **`.p10k.zsh`**: Powerlevel10k theme configuration for styling the Zsh prompt.
 - **`.tmux.conf`**: Configuration for tmux, optimizing keybinds, status bar aesthetics, and plugins.
 - **`ghostty/`**: Configuration for the Ghostty terminal emulator (specifically `config`).
+  - Cursor shaders live in `ghostty/shaders/`.
+  - To turn cursor shaders **ON**, ensure these lines are present and uncommented in `ghostty/config`:
+    - `custom-shader = shaders/cursor_warp.glsl`
+    - `custom-shader = shaders/ripple_cursor.glsl`
+    - `custom-shader-animation = always`
+  - To turn cursor shaders **OFF**, comment out or remove those three lines from `ghostty/config`; do not delete the shader files.
+  - After changing shader state, validate with `ghostty +validate-config --config-file=ghostty/config` and reload/restart Ghostty.
 - **`alacritty/`**: Configuration for the Alacritty GPU-accelerated terminal emulator (specifically `alacritty.toml`).
 
 ### macOS Environment & Automation
