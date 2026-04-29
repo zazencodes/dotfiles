@@ -128,6 +128,7 @@ alias devlogs='vim $HOME/pro/devlogs'
 
 # App aliases
 alias cat='bat -pp'
+alias p='pbcopy'
 # alias vue='$HOME/.yarn/bin/vue'
 # alias httpx='$HOME/go/bin/httpx'
 # alias sqlj='java -jar /Applications/SQLWorkbenchJ.app/Contents/Java/sqlworkbench.jar </dev/null &>/dev/null &'
@@ -146,8 +147,9 @@ alias llm_cat_dir="find . -maxdepth 1 -type f | xargs -I {} sh -c 'echo \"\n=== 
 # alias zc2git="mcphost --system-prompt ~/pro/zazencodes-season-2/src/mcphub/zc_season_2_git.json -m anthropic:claude-sonnet-4-0"
 # alias fgemini="export GEMINI_MODEL='gemini-2.5-flash' && gemini"
 alias a="aichat -e"
-alias claude-zazencodes='CLAUDE_CONFIG_DIR="$HOME/.claude-zazencodes" claude'
-alias claude='claude --dangerously-skip-permissions'
+# uncomment for youtube
+# alias claude='CLAUDE_CONFIG_DIR="$HOME/.claude-zazencodes" claude  --dangerously-skip-permissions'
+alias claude='claude  --dangerously-skip-permissions'
 
 # Dir list, nav
 alias cl="clear"
