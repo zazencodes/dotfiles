@@ -23,6 +23,11 @@ macos-option-as-alt = true
 # Emulate previous Terminfo to maintain Neovim/Tmux compatibility
 term = xterm-256color
 
+# Cursor shaders
+custom-shader = shaders/cursor_warp.glsl
+custom-shader = shaders/ripple_cursor.glsl
+custom-shader-animation = always
+
 # Action Keybindings
 keybind = ctrl+f=toggle_fullscreen
 keybind = cmd+q=ignore
