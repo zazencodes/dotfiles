@@ -118,6 +118,7 @@ alias oo='cd $HOME/obsidian/ZazenCodes'
 alias or='vim $HOME/obsidian/ZazenCodes/inbox/*.md'
 alias ou='cd $HOME/pro/notion-obsidian-sync-zazencodes && node batchUpload.js --lastmod-days-window 5'
 alias cd_obsidian_cloud="cd '/Users/alex/Library/Mobile Documents/iCloud~md~obsidian/Documents'"
+alias cd_zazencodes_canvas="cd '/Users/alex/Library/Mobile Documents/iCloud~md~obsidian/Documents/ZazenCodes Canvas'"
 
 # Path shortcuts
 alias nvc='cd $HOME/.config/nvim && vim'
@@ -128,6 +129,7 @@ alias devlogs='vim $HOME/pro/devlogs'
 
 # App aliases
 alias cat='bat -pp'
+alias icat='kitty icat'
 alias p='pbcopy'
 # alias vue='$HOME/.yarn/bin/vue'
 # alias httpx='$HOME/go/bin/httpx'
