@@ -245,3 +245,6 @@ aura-sync() {
 
 # Added by Antigravity
 export PATH="/Users/alex/.antigravity/antigravity/bin:$PATH"
+
+# kimi-code
+export PATH="/Users/alex/.kimi-code/bin:$PATH"
