@@ -140,10 +140,23 @@ require('lazy').setup({
           language = false,
         },
         checkbox = {
-          unchecked = { icon = '󰄱' },
-          checked   = { icon = '' },
+          unchecked = { icon = '󰄱 ', highlight = 'RenderMarkdownUnchecked' },
+          -- checked items keep their text readable: visible check icon, dimmed
+          -- text without the default strikethrough
+          checked = {
+            icon = '󰱒 ',
+            highlight = 'RenderMarkdownChecked',
+            scope_highlight = 'RenderMarkdownCheckedText',
+          },
         },
       })
+
+      local function checkbox_highlights()
+        vim.api.nvim_set_hl(0, 'RenderMarkdownChecked', { fg = '#a6e3a1', bold = true })
+        vim.api.nvim_set_hl(0, 'RenderMarkdownCheckedText', { fg = '#7f849c', italic = true })
+      end
+      checkbox_highlights()
+      vim.api.nvim_create_autocmd('ColorScheme', { callback = checkbox_highlights })
     end,
   },
 
