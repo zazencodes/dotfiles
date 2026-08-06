@@ -21,7 +21,10 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH" # postgres version 16
 export PATH="/Users/alex/.antigravity/antigravity/bin:$PATH"
 export PATH=/Users/alex/.opencode/bin:$PATH
-# export PATH="/opt/homebrew/opt/openjdk/bin:$PATH" # Add homebrew java to path
+# Homebrew openjdk (keg-only) ahead of the /usr/bin/java wrapper, which would
+# otherwise resolve to openjdk@17. Firebase emulators need JDK 21+.
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
 # export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 # Load credentials
