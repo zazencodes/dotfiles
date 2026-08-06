@@ -31,7 +31,6 @@ export JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
 source $HOME/.secrets.sh
 
 # Neovim
-alias v=nvim
 alias vim=nvim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
@@ -121,7 +120,8 @@ alias oo='cd $HOME/obsidian/ZazenCodes'
 alias or='vim $HOME/obsidian/ZazenCodes/inbox/*.md'
 alias ou='cd $HOME/pro/notion-obsidian-sync-zazencodes && node batchUpload.js --lastmod-days-window 5'
 alias cd_obsidian_cloud="cd '/Users/alex/Library/Mobile Documents/iCloud~md~obsidian/Documents'"
-alias cd_zazencodes_canvas="cd '/Users/alex/Library/Mobile Documents/iCloud~md~obsidian/Documents/ZazenCodes Canvas'"
+alias cd_zazencodes_canvas="cd ~/obsidian/ZazenCodesCanvas"
+alias cd_azath="cd ~/obsidian/AzathHouse"
 
 # Path shortcuts
 alias nvc='cd $HOME/.config/nvim && vim'
@@ -129,6 +129,10 @@ alias zc='cd $HOME/pro/zazencodes-season-3/src'
 alias cmcp='vim $HOME/Library/Application\ Support/Claude/claude_desktop_config.json'
 alias gmcp='vim $HOME/.gemini/settings.json'
 alias devlogs='vim $HOME/pro/devlogs'
+alias movies="cd /Users/alex/Movies"
+
+# Media shortcuts
+alias relink_content='cd "/Volumes/T7 Shield/reLink . 1 . Content"'
 
 # App aliases
 alias cat='bat -pp'
@@ -222,6 +226,10 @@ if [ -f '/Users/alex/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alex
 
 # Added by Windsurf
 # export PATH="/Users/alex/.codeium/windsurf/bin:$PATH"
+
+# Utilities
+alias genpass='openssl rand -base64 24 | tr -dc "[:alnum:][:punct:]" | fold -w 24 | head -n 1' # generate random 24-char password
+alias vims='nvim ~/Downloads/scratch.md' # open a scratchpad in vim
 
 # Scripts
 alias ayima_search_volumes="$HOME/virtualenvs/adhoc/bin/python $HOME/apro/ad-hoc-python-scripts/semrush-api/keyword-overview/get_keyword_overview.py"
