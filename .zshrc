@@ -121,7 +121,7 @@ alias or='vim $HOME/obsidian/ZazenCodes/inbox/*.md'
 alias ou='cd $HOME/pro/notion-obsidian-sync-zazencodes && node batchUpload.js --lastmod-days-window 5'
 alias cd_obsidian_cloud="cd '/Users/alex/Library/Mobile Documents/iCloud~md~obsidian/Documents'"
 alias cd_zazencodes_canvas="cd ~/obsidian/ZazenCodesCanvas"
-alias cd_azath="cd ~/obsidian/AzathHouse"
+alias cda="cd ~/obsidian/AzathHouse"
 
 # Path shortcuts
 alias nvc='cd $HOME/.config/nvim && vim'
