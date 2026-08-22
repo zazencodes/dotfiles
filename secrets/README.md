@@ -37,14 +37,6 @@ This directory holds local environment credentials and API tokens. The secret va
 └── opencode    # Raw key for OPENCODE_API_KEY
 ```
 
-## Files
-
-- **`global.sh`**: Baseline secrets automatically sourced into every shell session via `~/.zshrc`.
-- **`openai`**: Raw OpenAI API key (`OPENAI_API_KEY`).
-- **`anthropic`**: Raw Anthropic API key (`ANTHROPIC_API_KEY`).
-- **`gemini`**: Raw Google / Gemini API key (`GEMINI_API_KEY`).
-- **`opencode`**: Raw OpenCode API key (`OPENCODE_API_KEY`).
-
 ## Shell Commands (`~/.zshrc`)
 
 ### Session-Wide Load / Clear
