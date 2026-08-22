@@ -28,7 +28,64 @@ export JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
 # export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 # Load credentials
-source $HOME/.secrets.sh
+[[ -f $HOME/.secrets/global.sh ]] && source $HOME/.secrets/global.sh
+
+# On-demand secrets
+alias load-openai='export OPENAI_API_KEY="$(cat ~/.secrets/openai)"'
+alias clear-openai='unset OPENAI_API_KEY'
+
+alias load-anthropic='export ANTHROPIC_API_KEY="$(cat ~/.secrets/anthropic)"'
+alias clear-anthropic='unset ANTHROPIC_API_KEY'
+
+alias load-gemini='export GEMINI_API_KEY="$(cat ~/.secrets/gemini)"'
+alias clear-gemini='unset GEMINI_API_KEY'
+
+alias load-opencode='export OPENCODE_API_KEY="$(cat ~/.secrets/opencode)"'
+alias clear-opencode='unset OPENCODE_API_KEY'
+
+# Scoped secret runner
+with-secrets() {
+  local -a env_pairs
+  local var file candidate
+
+  while [[ $# -gt 0 ]]; do
+    if [[ "$1" == "--" ]]; then
+      shift
+      break
+    fi
+
+    var="$1"
+    file=""
+    # Look for matching file in ~/.secrets:
+    # 1. Exact match (e.g. ~/.secrets/OPENCODE_API_KEY)
+    # 2. Lowercase match (e.g. ~/.secrets/opencode_api_key)
+    # 3. Stripped _API_KEY (e.g. OPENCODE_API_KEY -> ~/.secrets/opencode)
+    # 4. Stripped _KEY (e.g. OPENCODE_KEY -> ~/.secrets/opencode)
+    for candidate in "$var" "${(L)var}" "${(L)${var%_API_KEY}}" "${(L)${var%_KEY}}"; do
+      if [[ -f "$HOME/.secrets/$candidate" ]]; then
+        file="$HOME/.secrets/$candidate"
+        break
+      fi
+    done
+
+    if [[ -n "$file" ]]; then
+      env_pairs+=("$var=$(cat "$file")")
+    else
+      echo "Error: No secret file found for '$var' in ~/.secrets" >&2
+      return 1
+    fi
+    shift
+  done
+
+  if [[ ${#env_pairs[@]} -eq 0 || $# -eq 0 ]]; then
+    echo "Usage: with-secrets VAR1 [VAR2...] -- command [args...]" >&2
+    return 1
+  fi
+
+  env "${env_pairs[@]}" "$@"
+}
+
+alias pi='with-secrets OPENCODE_API_KEY -- pi'
 
 # Neovim
 alias vim=nvim
@@ -111,8 +168,8 @@ alias gitu='git commit -m "Update $(date +%F)"'
 alias gitq='git add -u && git commit -m "Update $(date +%F)" && git push'
 alias gitc='aicommits' # requires aicommits installed (https://github.com/Nutlope/aicommits)
 
-# Plain text
-export EDITOR='mate -w'
+# Plain text (using Neovim configured above via $VISUAL)
+# export EDITOR='mate -w'
 nn() { touch ~/Downloads/$1 && mate $1 }
 
 # Obsidian
@@ -248,3 +305,7 @@ export PATH="/Users/alex/.antigravity/antigravity/bin:$PATH"
 
 # kimi-code
 export PATH="/Users/alex/.kimi-code/bin:$PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/alex/.local/bin:$PATH"
