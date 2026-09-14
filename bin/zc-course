@@ -1,20 +1,21 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ -z "${TMUX:-}" ]; then
-  echo "Error: zc-course must be run inside a tmux session." >&2
+if [ -n "${TMUX:-}" ]; then
+  echo "Error: zc-course must be run outside of tmux." >&2
   exit 1
 fi
 
+SESSION_NAME="agentic-course"
 CONTENT_DIR="/Users/alex/pro/zazencodes-content/courses/2026_09_14_agentic_coding_fundamentals"
 COURSE_CODE_DIR="/Users/alex/pro/agentic-coding-fundamentals-course"
 VAULT_NOTES_DIR="/Users/alex/obsidian/AzathHouse/Projects/ZazenCodes/Offers & Products/Courses/Agentic Coding Fundamentals"
 
-tmux rename-session "agentic-course"
-tmux rename-window "content"
-tmux send-keys "cd '$CONTENT_DIR' && clear" C-m
+if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+  tmux new-session -d -s "$SESSION_NAME" -n "content" -c "$CONTENT_DIR"
+  tmux new-window -t "$SESSION_NAME" -n "course-code" -c "$COURSE_CODE_DIR"
+  tmux new-window -t "$SESSION_NAME" -n "vault-notes" -c "$VAULT_NOTES_DIR"
+  tmux select-window -t "$SESSION_NAME:content"
+fi
 
-tmux new-window -n "course-code" -c "$COURSE_CODE_DIR"
-tmux new-window -n "vault-notes" -c "$VAULT_NOTES_DIR"
-
-tmux select-window -t ":content"
+exec tmux attach-session -t "$SESSION_NAME"
