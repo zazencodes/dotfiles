@@ -85,7 +85,10 @@ with-secrets() {
   env "${env_pairs[@]}" "$@"
 }
 
+
+# AI cli shortcuts
 alias pi='with-secrets OPENCODE_API_KEY -- pi'
+alias aicmd='with-secrets OPENAI_API_KEY -- aicmd'
 
 # Neovim
 alias vim=nvim
@@ -172,13 +175,21 @@ alias gitc='aicommits' # requires aicommits installed (https://github.com/Nutlop
 # export EDITOR='mate -w'
 nn() { touch ~/Downloads/$1 && mate $1 }
 
-# Obsidian
-alias oo='cd $HOME/obsidian/ZazenCodes'
-alias or='vim $HOME/obsidian/ZazenCodes/inbox/*.md'
-alias ou='cd $HOME/pro/notion-obsidian-sync-zazencodes && node batchUpload.js --lastmod-days-window 5'
-alias cd_obsidian_cloud="cd '/Users/alex/Library/Mobile Documents/iCloud~md~obsidian/Documents'"
-alias cd_zazencodes_canvas="cd ~/obsidian/ZazenCodesCanvas"
-alias cda="cd ~/obsidian/AzathHouse"
+# Obsidian (AzathHouse vault)
+alias oo='cd $HOME/obsidian/AzathHouse'
+alias oc='cd "$HOME/obsidian/AzathHouse/Areas/SWE/Cheat Sheets"'
+
+# ------------------------------------------------------------------------------
+# HISTORICAL CONTEXT:
+# The aliases below were part of the 2024 ZazenCodes Obsidian Zettelkasten &
+# Notion synchronization workflow featured on the ZazenCodes YouTube channel.
+# Disabled in 2026: The ZazenCodes vault was migrated to AzathHouse, and note
+# organization is now managed directly with coding agents.
+# ------------------------------------------------------------------------------
+# alias or='vim $HOME/obsidian/ZazenCodes/inbox/*.md'
+# alias ou='cd $HOME/pro/notion-obsidian-sync-zazencodes && node batchUpload.js --lastmod-days-window 5'
+# alias cd_obsidian_cloud="cd '/Users/alex/Library/Mobile Documents/iCloud~md~obsidian/Documents'"
+# alias cd_zazencodes_canvas="cd ~/obsidian/ZazenCodesCanvas"
 
 # Path shortcuts
 alias nvc='cd $HOME/.config/nvim && vim'
@@ -287,18 +298,6 @@ if [ -f '/Users/alex/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alex
 # Utilities
 alias genpass='openssl rand -base64 24 | tr -dc "[:alnum:][:punct:]" | fold -w 24 | head -n 1' # generate random 24-char password
 alias vims='nvim ~/Downloads/scratch.md' # open a scratchpad in vim
-
-# Scripts
-alias ayima_search_volumes="$HOME/virtualenvs/adhoc/bin/python $HOME/apro/ad-hoc-python-scripts/semrush-api/keyword-overview/get_keyword_overview.py"
-
-# Workflow shortcuts
-aura-sync() {
-  cd /Users/alex/apro/aura
-  echo "==> Local: pushing changes"
-  git push || true
-  echo "==> Remote: git pull on aura"
-  ssh aura 'cd /root/aura && git pull'
-}
 
 # Added by Antigravity
 export PATH="/Users/alex/.antigravity/antigravity/bin:$PATH"
