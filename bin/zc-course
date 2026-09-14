@@ -13,8 +13,8 @@ VAULT_NOTES_DIR="/Users/alex/obsidian/AzathHouse/Projects/ZazenCodes/Offers & Pr
 
 if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
   tmux new-session -d -s "$SESSION_NAME" -n "content" -c "$CONTENT_DIR"
-  tmux new-window -t "$SESSION_NAME" -n "course-code" -c "$COURSE_CODE_DIR"
   tmux new-window -t "$SESSION_NAME" -n "vault-notes" -c "$VAULT_NOTES_DIR"
+  tmux new-window -t "$SESSION_NAME" -n "course-code" -c "$COURSE_CODE_DIR"
   tmux select-window -t "$SESSION_NAME:content"
 fi
 
