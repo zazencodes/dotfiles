@@ -118,15 +118,12 @@ nvim/
 
 ## 📝 Obsidian Workflow (`lua/workflows.lua`)
 
-**Vault Path:** `/Users/alex/obsidian/ZazenCodes`
+**Vault Path:** `/Users/alex/obsidian/AzathHouse`
 
 **Workflow Keymaps:**
-- `<leader>oo` - Navigate to vault
-- `<leader>on` - Apply note template
-- `<leader>of` - Format note title
-- `<leader>os` - Search vault files
-- `<leader>oz` - Live grep vault
-- `<leader>ok` - Move file to zettelkasten
+- `<leader>os` - Search AzathHouse vault files
+- `<leader>oz` - Live grep AzathHouse vault
+- `<leader>oc` - Quick search SWE Cheat Sheets
 - `<leader>odd` - Delete current file
 
 ## 🎨 Customizations

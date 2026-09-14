@@ -47,7 +47,8 @@ This repository stores configuration files centrally and symlinks them to their 
 
 ### Custom Scripts (`bin/` and `opt/`)
 The `bin/` directory contains helper shell scripts meant to be placed in the user's `$PATH`.
-- **`on` & `og`**: Scripts built specifically to automate creating and moving notes directly into the user's Obsidian (`ZazenCodes`) vault.
+- **`on`**: Script built specifically to automate creating notes directly into the user's Obsidian (`AzathHouse`) inbox.
+- **`og`**: Legacy script from the 2024 ZazenCodes YouTube video; disabled in 2026 with historical context.
 - **`aicommit`**: A bash wrapper script that simply executes a python AI tool for generating git commits.
 - **`opt/git_commit_agent.py`**: The underlying Python script invoked by `aicommit`.
 - **`compress_video`**: A bash utility that compresses video files to land below a requested size cap, with optional width reduction.

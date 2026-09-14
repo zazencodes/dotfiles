@@ -21,7 +21,7 @@ This is a personal Neovim configuration written in Lua, using [lazy.nvim](https:
 - Plugin loading is skipped entirely when running inside VSCode (`vim.g.vscode` check in `init.lua`).
 - `lua/options.lua` — global vim settings and all autocmds (formatting, trailing whitespace, JSON folding, etc.)
 - `lua/keymaps.lua` — global keybindings; leader key is `<Space>`
-- `lua/workflows.lua` — Obsidian note-taking workflows; vault is at `~/obsidian/ZazenCodes`
+- `lua/workflows.lua` — Obsidian note-taking workflows; vault is at `~/obsidian/AzathHouse`
 - `lua/plugins/lazy.lua` — plugin list and inline configs for smaller plugins
 - `lua/plugins/lsp.lua` — Mason + nvim-lspconfig + nvim-cmp setup; auto-installs `pyright`, `ruff`, `tailwindcss`, `ts_ls`, `eslint`
 - `lua/plugins/keymaps.lua` — plugin-specific keybindings (Telescope, LSP, gitsigns, etc.)
