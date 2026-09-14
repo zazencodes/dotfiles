@@ -1,9 +1,9 @@
 require("obsidian").setup({
   workspaces = {
     {
-        name = "ZazenCodes",
-        path = "/Users/alex/obsidian/ZazenCodes",
-      },
+      name = "AzathHouse",
+      path = "/Users/alex/obsidian/AzathHouse",
+    },
   },
   notes_subdir = "inbox",
   new_notes_location = "notes_subdir",
