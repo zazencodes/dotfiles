@@ -1,13 +1,26 @@
 #!/bin/zsh
+# ==============================================================================
+# `on` — Create a new note in the Obsidian (AzathHouse) inbox
+# Migrated in 2026 from ZazenCodes to AzathHouse.
+# ==============================================================================
 
 if [ -z "$1" ]; then
-  echo "Error: A file name must be set, e.g. on \"the wonderful thing about tiggers\"."
+  echo "Error: A note name must be provided, e.g.: on \"My New Note\""
   exit 1
 fi
 
-file_name=$(echo "$1" | tr ' ' '-')
-formatted_file_name=$(date "+%Y-%m-%d")_${file_name}.md
-# cd "/Users/alex/library/Mobile Documents/iCloud~md~obsidian/Documents/ZazenCodes" || exit
-cd "/Users/alex/obsidian/ZazenCodes" || exit
-touch "inbox/${formatted_file_name}"
-nvim "inbox/${formatted_file_name}"
+VAULT_DIR="${HOME}/obsidian/AzathHouse"
+INBOX_DIR="${VAULT_DIR}/inbox"
+
+# Combine arguments in case arguments were passed without quotes
+note_name="$*"
+
+# Strip trailing .md if provided, then append .md cleanly
+note_name="${note_name%.md}.md"
+
+mkdir -p "$INBOX_DIR"
+target_file="${INBOX_DIR}/${note_name}"
+
+touch "$target_file"
+cd "$VAULT_DIR" || exit 1
+${VISUAL:-${EDITOR:-nvim}} "$target_file"
