@@ -1,11 +1,36 @@
 #!/bin/bash
 
-# Path to your python script in /opt
-AGENT_SCRIPT="$HOME/opt/git_commit_agent.py"
+PROMPT="${1:-add, commit and push changes}"
 
-# Get the absolute path of the current working directory
-CURRENT_REPO=$(pwd)
+agy -p "$PROMPT" --model gemini-3.7-flash --effort low --output-format stream-json | python3 -c '
+import sys, json
 
-# Execute python script through shebang command
-echo "$AGENT_SCRIPT --repo \"$CURRENT_REPO\" --push $*"
-"$AGENT_SCRIPT" --repo "$CURRENT_REPO" --push "$@"
+for line in sys.stdin:
+    line = line.strip()
+    if not line:
+        continue
+    try:
+        data = json.loads(line)
+        event = data.get("event")
+        if event == "step_update":
+            su = data.get("step_update", {})
+            stype = su.get("step_type")
+            state = su.get("state")
+            if stype == "tool":
+                tname = su.get("tool_name") or su.get("tool_info", {}).get("name", "tool")
+                params = su.get("tool_info", {}).get("parameters", {})
+                if state == "ACTIVE":
+                    cmd = params.get("CommandLine") or params.get("Prompt") or str(params)
+                    print(f"\033[36m⚡ [{tname}]\033[0m {cmd}", flush=True)
+                elif state == "DONE":
+                    out = su.get("tool_info", {}).get("output")
+                    if out:
+                        for l in out.strip().splitlines()[:10]:
+                            print(f"   \033[90m{l}\033[0m", flush=True)
+            elif stype == "agent_response":
+                delta = su.get("text_delta")
+                if delta:
+                    print(delta, end="", flush=True)
+    except Exception:
+        pass
+'
