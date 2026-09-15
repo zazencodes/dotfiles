@@ -1,4 +1,45 @@
 #!/bin/bash
+#
+# aicommit - Fast AI-driven git commit & push CLI powered by Antigravity
+#
+# Usage:
+#   aicommit [custom instructions...]
+#   aicommit -h | --help
+#
+# Examples:
+#   # Run with default prompt ("add, commit and push changes"):
+#   aicommit
+#
+#   # Extend default prompt with additional instruction:
+#   aicommit "do not push to origin"
+#   -> Prompt: "add, commit and push changes. do not push to origin"
+#
+#   # Pass unquoted custom instructions:
+#   aicommit split into two commits for docs and src
+#   -> Prompt: "add, commit and push changes. split into two commits for docs and src"
+
+if [ "$1" = "-h" ] || [ "$1" = "--help" ] || [ "$1" = "help" ]; then
+  cat << 'EOF'
+Usage: aicommit [custom instructions...]
+
+Non-interactively stages, commits, and pushes changes using Antigravity
+with low reasoning effort and real-time formatted tool streaming.
+
+Options:
+  -h, --help    Show this help message
+
+Default prompt:
+  "add, commit and push changes"
+
+Custom instructions are automatically appended to the default prompt:
+  aicommit "do not push"
+  -> "add, commit and push changes. do not push"
+
+  aicommit split into separate commits for docs and code
+  -> "add, commit and push changes. split into separate commits for docs and code"
+EOF
+  exit 0
+fi
 
 BASE_PROMPT="add, commit and push changes"
 
