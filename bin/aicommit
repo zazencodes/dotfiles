@@ -1,6 +1,12 @@
 #!/bin/bash
 
-PROMPT="${1:-add, commit and push changes}"
+BASE_PROMPT="add, commit and push changes"
+
+if [ -n "$*" ]; then
+  PROMPT="${BASE_PROMPT}. $*"
+else
+  PROMPT="${BASE_PROMPT}"
+fi
 
 agy -p "$PROMPT" --model gemini-3.7-flash --effort low --output-format stream-json | python3 -c '
 import sys, json
