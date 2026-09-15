@@ -89,6 +89,7 @@ with-secrets() {
 # AI cli shortcuts
 alias pi='with-secrets OPENCODE_API_KEY -- pi'
 alias aicmd='with-secrets OPENAI_API_KEY -- aicmd'
+alias aiq='npx -y quota-axi --tui --allow-keychain-prompt'
 
 # Neovim
 alias vim=nvim
