@@ -49,7 +49,9 @@ else
   PROMPT="${BASE_PROMPT}"
 fi
 
-agy -p "$PROMPT" --model gemini-3.7-flash --effort low --output-format stream-json | python3 -c '
+CURRENT_DIR="$(pwd)"
+
+agy --add-dir "$CURRENT_DIR" -p "$PROMPT" --model gemini-3.7-flash --effort low --output-format stream-json | python3 -c '
 import sys, json
 
 for line in sys.stdin:
