@@ -164,6 +164,7 @@ After opening neovim:
 ## 📚 Key Dependencies
 
 Ensure these are installed on your system:
+- `neovim` 0.12+ (`brew install neovim`)
 - `ruff` (Python linting/formatting)
 - `node` & `npm` (for LSP servers and MCP hub)
 - `fortune` (for dashboard quotes)
