@@ -355,11 +355,11 @@ require('lazy').setup({
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    build = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
+    branch = 'main',
+    lazy = false,
+    build = ':TSUpdate',
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
+      { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' },
     }
   },
 
@@ -371,10 +371,6 @@ require('lazy').setup({
   { 'nvim-telescope/telescope-symbols.nvim' },
 
   { "folke/twilight.nvim", opts = { } },
-
-  -- Treesitter playground
-  { "nvim-treesitter/nvim-treesitter" },
-  { "nvim-treesitter/playground" },
 
   -- {
   --   'kristijanhusak/vim-dadbod-ui',
