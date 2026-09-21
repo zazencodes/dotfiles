@@ -16,7 +16,7 @@ bindkey -M viins '^[f' forward-word
 bindkey -M viins '^[b' backward-word
 
 # Extend PATH
-export PATH="$PATH:/opt/homebrew/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+export PATH="$PATH:/opt/homebrew/bin:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH" # postgres version 16
 export PATH="/Users/alex/.antigravity/antigravity/bin:$PATH"
