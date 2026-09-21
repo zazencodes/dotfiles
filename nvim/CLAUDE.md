@@ -44,7 +44,7 @@ Set via autocmds in `lua/options.lua`:
 
 - New plugin configs go in `lua/plugins/lazy.lua` (inline) or a dedicated file in `lua/plugins/` loaded from `init.lua`.
 - Keybindings for plugins belong in `lua/plugins/keymaps.lua`; global bindings in `lua/keymaps.lua`.
-- Avante and CodeCompanion configs exist but are commented out in `lua/plugins/lazy.lua`; MCPHub is active.
+- Avante and CodeCompanion configs exist but are commented out in `lua/plugins/lazy.lua`.
 
 ## System Dependencies
 

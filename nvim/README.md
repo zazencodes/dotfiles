@@ -76,7 +76,6 @@ nvim/
 #### AI/LLM Integration
 - **CodeCompanion:** Anthropic/Claude integration (`<leader>oa`, `<leader>oe`)
 - **Avante:** Claude-powered AI assistant with tools
-- **MCPHub:** MCP server integration for AI tools
 - **Ollama:** Local LLM support
 
 #### File Management & Navigation
@@ -166,6 +165,6 @@ After opening neovim:
 Ensure these are installed on your system:
 - `neovim` 0.12+ (`brew install neovim`)
 - `ruff` (Python linting/formatting)
-- `node` & `npm` (for LSP servers and MCP hub)
+- `node` & `npm` (for LSP servers)
 - `fortune` (for dashboard quotes)
 - Font with nerd icons support (for file tree icons) 
