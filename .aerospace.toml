@@ -129,6 +129,8 @@ on-mode-changed = []
     alt-equal = 'resize smart +50'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+    # Note: Workspaces B, D, and F (and H/J/K/L) are intentionally unbound to preserve
+    # standard terminal readline word navigation/deletion (Alt+B backward-word, Alt+F forward-word, Alt+D kill-word).
     alt-1 = 'workspace 1'
     alt-2 = 'workspace 2'
     alt-3 = 'workspace 3'
