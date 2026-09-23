@@ -45,8 +45,8 @@ automatically-unhide-macos-hidden-apps = false
 # even when they are invisible.
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B",
-                         "C", "E", "F", "G", "I", "M", "N", "O", "P", "Q",
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A",
+                         "C", "E", "G", "I", "M", "N", "O", "P", "Q",
                          "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
 # A callback that runs every time binding mode changes
@@ -139,10 +139,8 @@ on-mode-changed = []
     alt-8 = 'workspace 8'
     alt-9 = 'workspace 9'
     alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-    alt-b = 'workspace B'
     alt-c = 'workspace C'
     alt-e = 'workspace E'
-    alt-f = 'workspace F'
     alt-g = 'workspace G'
     alt-i = 'workspace I'
     alt-m = 'workspace M'
@@ -171,10 +169,8 @@ on-mode-changed = []
     alt-shift-8 = 'move-node-to-workspace 8'
     alt-shift-9 = 'move-node-to-workspace 9'
     alt-shift-a = 'move-node-to-workspace A'
-    alt-shift-b = 'move-node-to-workspace B'
     alt-shift-c = 'move-node-to-workspace C'
     alt-shift-e = 'move-node-to-workspace E'
-    alt-shift-f = 'move-node-to-workspace F'
     alt-shift-g = 'move-node-to-workspace G'
     alt-shift-i = 'move-node-to-workspace I'
     alt-shift-m = 'move-node-to-workspace M'
