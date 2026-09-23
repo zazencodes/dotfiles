@@ -39,7 +39,6 @@ This repository stores configuration files centrally and symlinks them to their 
 
 ### macOS Environment & Automation
 - **`.aerospace.toml`**: Settings for AeroSpace, a macOS tiling window manager. This controls window layouts and keyboard-driven window management.
-  - Letter workspaces `B`, `D`, and `F` (as well as `H`, `J`, `K`, `L`) are intentionally unbound to prevent AeroSpace from capturing standard terminal / readline shortcuts (`Option+b` backward-word, `Option+f` forward-word, `Option+d` kill-word).
 - **`hammerspoon/`**: Contains Lua scripts (`init.lua`) for Hammerspoon, a powerful macOS desktop automation tool.
 - **`karabiner-elements/`**: JSON configuration (`karabiner.json`) for advanced keyboard remapping via Karabiner-Elements.
 
