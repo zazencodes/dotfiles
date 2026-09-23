@@ -195,6 +195,7 @@ alias oc='cd "$HOME/obsidian/AzathHouse/Areas/SWE/Cheat Sheets"'
 # Path shortcuts
 alias nvc='cd $HOME/.config/nvim && vim'
 alias zc='cd $HOME/pro/zazencodes-season-3/src'
+alias zc-jev='jev-course'
 alias cmcp='vim $HOME/Library/Application\ Support/Claude/claude_desktop_config.json'
 alias gmcp='vim $HOME/.gemini/settings.json'
 alias devlogs='vim $HOME/pro/devlogs'
