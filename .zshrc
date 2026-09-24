@@ -176,9 +176,15 @@ alias gitc='aicommits' # requires aicommits installed (https://github.com/Nutlop
 # export EDITOR='mate -w'
 nn() { touch ~/Downloads/$1 && mate $1 }
 
+# Path shortcuts
+alias zc='cd $HOME/pro/zazencodes-season-3/src'
+alias movies="cd /Users/alex/Movies"
+alias dots="cd ~/dotfiles"
+
 # Obsidian (AzathHouse vault)
 alias oo='cd $HOME/obsidian/AzathHouse'
-alias oc='cd "$HOME/obsidian/AzathHouse/Areas/SWE/Cheat Sheets"'
+alias o-cheat='cd "$HOME/obsidian/AzathHouse/Areas/SWE/Cheat Sheets"'
+alias o-canvas='cd $HOME/obsidian/ZazenCodesCanvas'
 
 # ------------------------------------------------------------------------------
 # HISTORICAL CONTEXT:
@@ -191,15 +197,6 @@ alias oc='cd "$HOME/obsidian/AzathHouse/Areas/SWE/Cheat Sheets"'
 # alias ou='cd $HOME/pro/notion-obsidian-sync-zazencodes && node batchUpload.js --lastmod-days-window 5'
 # alias cd_obsidian_cloud="cd '/Users/alex/Library/Mobile Documents/iCloud~md~obsidian/Documents'"
 # alias cd_zazencodes_canvas="cd ~/obsidian/ZazenCodesCanvas"
-
-# Path shortcuts
-alias nvc='cd $HOME/.config/nvim && vim'
-alias zc='cd $HOME/pro/zazencodes-season-3/src'
-alias zc-jev='jev-course'
-alias cmcp='vim $HOME/Library/Application\ Support/Claude/claude_desktop_config.json'
-alias gmcp='vim $HOME/.gemini/settings.json'
-alias devlogs='vim $HOME/pro/devlogs'
-alias movies="cd /Users/alex/Movies"
 
 # Media shortcuts
 alias relink_content='cd "/Volumes/T7 Shield/reLink . 1 . Content"'
