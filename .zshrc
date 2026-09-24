@@ -179,7 +179,16 @@ nn() { touch ~/Downloads/$1 && mate $1 }
 # Path shortcuts
 alias zc='cd $HOME/pro/zazencodes-season-3/src'
 alias movies="cd /Users/alex/Movies"
-alias dots="cd ~/dotfiles"
+dots() {
+  if [[ -z "$TMUX" ]]; then
+    echo "Error: dots must be run inside tmux." >&2
+    return 1
+  fi
+
+  cd "$HOME/dotfiles" || return 1
+  tmux split-window -hb -c "$HOME/dotfiles" agy
+  nvim .
+}
 
 # Obsidian (AzathHouse vault)
 alias oo='cd $HOME/obsidian/AzathHouse'
