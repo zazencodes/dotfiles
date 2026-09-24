@@ -186,8 +186,8 @@ dots() {
   fi
 
   cd "$HOME/dotfiles" || return 1
-  tmux split-window -hb -c "$HOME/dotfiles" agy
-  nvim .
+  tmux split-window -hbd -c "$HOME/dotfiles" agy
+  nvim
 }
 
 # Obsidian (AzathHouse vault)
