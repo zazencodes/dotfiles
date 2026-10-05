@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ -n "${TMUX:-}" ]; then
-  echo "Error: zc-course must be run outside of tmux." >&2
-  exit 1
-fi
-
 SESSION_NAME="agentic-course"
 CONTENT_DIR="/Users/alex/pro/zazencodes-content/courses/2026_09_14_agentic_coding_fundamentals"
 COURSE_CODE_DIR="/Users/alex/pro/agentic-coding-fundamentals-course"
@@ -18,4 +13,8 @@ if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
   tmux select-window -t "$SESSION_NAME:content"
 fi
 
-exec tmux attach-session -t "$SESSION_NAME"
+if [ -n "${TMUX:-}" ]; then
+  exec tmux switch-client -t "$SESSION_NAME"
+else
+  exec tmux attach-session -t "$SESSION_NAME"
+fi
