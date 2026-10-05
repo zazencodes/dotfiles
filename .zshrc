@@ -43,6 +43,9 @@ alias clear-gemini='unset GEMINI_API_KEY'
 alias load-opencode='export OPENCODE_API_KEY="$(cat ~/.secrets/opencode)"'
 alias clear-opencode='unset OPENCODE_API_KEY'
 
+alias load-ninerouter='export NINEROUTER_API_KEY="$(cat ~/.secrets/9router)"'
+alias clear-ninerouter='unset NINEROUTER_API_KEY'
+
 # Scoped secret runner
 with-secrets() {
   local -a env_pairs
@@ -87,7 +90,7 @@ with-secrets() {
 
 
 # AI cli shortcuts
-alias pi='with-secrets OPENCODE_API_KEY -- pi'
+alias pi='with-secrets OPENCODE_API_KEY NINEROUTER_API_KEY -- pi'
 alias aicmd='with-secrets OPENAI_API_KEY -- aicmd'
 alias aiq='npx -y quota-axi --tui --allow-keychain-prompt'
 
@@ -178,6 +181,7 @@ nn() { touch ~/Downloads/$1 && mate $1 }
 
 # Path shortcuts
 alias zc='cd $HOME/pro/zazencodes-season-3/src'
+alias zc-jev='jev-course'
 alias movies="cd /Users/alex/Movies"
 dots() {
   if [[ -z "$TMUX" ]]; then
