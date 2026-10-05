@@ -12,8 +12,8 @@ require('telescope').setup {
   defaults = {
     layout_strategy = "vertical",
     layout_config = {
-      preview_height = 0.7,
       vertical = {
+        preview_height = 0.7,
         size = {
           width = "95%",
           height = "95%",
@@ -33,7 +33,11 @@ require('telescope').setup {
       },
     },
   },
+  extensions = {
+    ["ui-select"] = { require("telescope.themes").get_dropdown() },
+  },
 }
+require('telescope').load_extension('ui-select')
 
 -- vim.keymap.set("n", "<Leader>sn", "<CMD>lua require('telescope').extensions.notify.notify()<CR>", silent)
 

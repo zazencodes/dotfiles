@@ -8,6 +8,7 @@ if not vim.g.vscode then
   require('plugins.lsp')
   require('plugins.obsidian')
   require('plugins.zenmode')
+  require('plugins.ark')
   require('plugins.keymaps')
   require('plugins.options')
   require('workflows')
