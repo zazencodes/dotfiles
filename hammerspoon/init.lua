@@ -191,3 +191,20 @@ hs.hotkey.bind({"ctrl", "alt", "cmd"}, "n", function()
   ]])
 end)
 
+-- ctrl+shift+1..6: open a new Chrome window in a profile
+local CHROME_PROFILES = {
+  ["1"] = "Default",    -- Main
+  ["2"] = "Profile 4",  -- ZazenCodes
+  ["3"] = "Profile 13", -- alex@galea.dev
+  ["4"] = "Profile 6",  -- Toc
+  ["5"] = "Profile 21", -- vivy@galea.dev
+  ["6"] = "Profile 24", -- 2b@galea.dev
+}
+
+for key, profileDir in pairs(CHROME_PROFILES) do
+  hs.hotkey.bind({"ctrl", "shift"}, key, function()
+    hs.task.new("/usr/bin/open", nil, {
+      "-na", "Google Chrome", "--args", "--profile-directory=" .. profileDir,
+    }):start()
+  end)
+end

@@ -32,3 +32,18 @@ If the clipboard holds an image, pastes a copy scaled to 50% (longest edge cappe
 ### New CotEditor document (`ctrl+alt+cmd+n`)
 
 Opens a new CotEditor document and brings it to the front. AeroSpace places it on the current workspace. The first use triggers a macOS prompt asking to let Hammerspoon control CotEditor.
+
+### New Chrome window in a profile (`ctrl+shift`)
+
+Opens a new Chrome window in the given profile. Works while Chrome is already open in another profile.
+
+| Key | Profile |
+| --- | --- |
+| `1` | Main |
+| `2` | ZazenCodes |
+| `3` | alex@galea.dev |
+| `4` | Toc |
+| `5` | vivy@galea.dev |
+| `6` | 2b@galea.dev |
+
+Mappings are in `CHROME_PROFILES` in `init.lua`. Profile folder names come from `profile.info_cache` in `~/Library/Application Support/Google/Chrome/Local State`.
