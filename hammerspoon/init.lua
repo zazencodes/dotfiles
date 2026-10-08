@@ -180,3 +180,14 @@ end))
 
 -- ctrl+shift+v: paste a downsized clipboard image, or normal paste for non-images
 hs.hotkey.bind(IMAGE_PASTE_MODS, IMAGE_PASTE_KEY, pasteDownsizedClipboardImage)
+
+-- ctrl+alt+cmd+n: open a new CotEditor document on the current workspace
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "n", function()
+  hs.osascript.applescript([[
+    tell application "CotEditor"
+      make new document
+      activate
+    end tell
+  ]])
+end)
+
