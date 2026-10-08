@@ -38,7 +38,7 @@ This repository stores configuration files centrally and symlinks them to their 
 - **`alacritty/`**: Configuration for the Alacritty GPU-accelerated terminal emulator (specifically `alacritty.toml`).
 
 ### macOS Environment & Automation
-- **`.aerospace.toml`**: Settings for AeroSpace, a macOS tiling window manager. This controls window layouts and keyboard-driven window management.
+- **`.aerospace.toml`**: Settings for AeroSpace, a macOS tiling window manager. This controls window layouts and keyboard-driven window management. Hotkeys are documented in `docs/aerospace.md`; keep it in sync with `.aerospace.toml`.
 - **`hammerspoon/`**: Contains Lua scripts (`init.lua`) for Hammerspoon, a powerful macOS desktop automation tool. Hotkeys are documented in `docs/hammerspoon.md`; keep it in sync with `init.lua`.
 - **`karabiner-elements/`**: JSON configuration (`karabiner.json`) for advanced keyboard remapping via Karabiner-Elements.
 

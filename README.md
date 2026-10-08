@@ -9,7 +9,7 @@
 
 ## Configs
 
-Hammerspoon hotkeys are documented in [docs/hammerspoon.md](docs/hammerspoon.md).
+Hotkeys are documented in [docs/hammerspoon.md](docs/hammerspoon.md) and [docs/aerospace.md](docs/aerospace.md).
 
 ```bash
 git clone https://github.com/agalea91/dotfiles.git ~/dotfiles
