@@ -49,8 +49,8 @@ This repository stores configuration files centrally and symlinks them to their 
 The `bin/` directory contains helper shell scripts meant to be placed in the user's `$PATH`.
 - **`on`**: Script built specifically to automate creating notes directly into the user's Obsidian (`AzathHouse`) inbox.
 - **`og`**: Legacy script from the 2024 ZazenCodes YouTube video; disabled in 2026 with historical context.
-- **`aicommit`**: A bash wrapper script that simply executes a python AI tool for generating git commits.
-- **`opt/git_commit_agent.py`**: The underlying Python script invoked by `aicommit`.
+- **`aicommit`**: A bash wrapper that runs the Codex commit agent through `uv`, with a Rich live terminal display.
+- **`opt/git_commit_agent.py`**: The Codex JSONL runner and Rich display invoked by `aicommit`; its inline dependency metadata is managed by `uv`. Records Git history before the run, shows new commits with per-file statistics, and opens an `fzf` diff browser on interactive terminals (Enter expands into `less`, q returns, Esc closes).
 - **`compress_video`**: A bash utility that compresses video files to land below a requested size cap, with optional width reduction.
 - **`rip_transcript`**: A bash wrapper that transcribes audio or video files and writes transcript artifacts next to the source media.
 - **`opt/rip_transcript.py`**: The underlying Python script invoked by `rip_transcript`, using `mlx_whisper` to generate plain text, timestamped text, and raw JSON outputs.

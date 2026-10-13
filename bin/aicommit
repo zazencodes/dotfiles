@@ -1,5 +1,7 @@
 #!/bin/bash
-#
+
+set -euo pipefail
+
 # aicommit - Fast AI-driven git commit & push CLI powered by Codex
 #
 # Usage:
@@ -18,12 +20,16 @@
 #   aicommit split into two commits for docs and src
 #   -> Prompt: "add, commit and push changes. split into two commits for docs and src"
 
-if [ "$1" = "-h" ] || [ "$1" = "--help" ] || [ "$1" = "help" ]; then
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ] || [ "${1:-}" = "help" ]; then
   cat << 'EOF'
 Usage: aicommit [custom instructions...]
 
 Non-interactively stages, commits, and pushes changes using Codex
-(gpt-6-luna, medium reasoning effort).
+(gpt-6-luna, medium reasoning effort), with a live activity feed.
+Full session output is saved to a private log shown when the run finishes.
+New commits are shown with file statistics, then opened for interactive review.
+Review: arrows to select, Enter for the full diff, q to return, Esc to close.
+Requires codex, uv, fzf and less; uv installs the display dependency automatically.
 
 Options:
   -h, --help    Show this help message
@@ -41,14 +47,5 @@ EOF
   exit 0
 fi
 
-BASE_PROMPT="add, commit and push changes"
-
-if [ -n "$*" ]; then
-  PROMPT="${BASE_PROMPT}. $*"
-else
-  PROMPT="${BASE_PROMPT}"
-fi
-
-CURRENT_DIR="$(pwd)"
-
-codex exec --cd "$CURRENT_DIR" --dangerously-bypass-approvals-and-sandbox -m gpt-6-luna -c model_reasoning_effort=medium "$PROMPT"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec uv run --script "${SCRIPT_DIR%/bin}/opt/git_commit_agent.py" "$@"

@@ -173,7 +173,6 @@ gitm() { git commit -m "$1" }
 alias gitp='git push'
 alias gitu='git commit -m "Update $(date +%F)"'
 alias gitq='git add -u && git commit -m "Update $(date +%F)" && git push'
-alias gitc='aicommits' # requires aicommits installed (https://github.com/Nutlope/aicommits)
 
 # Plain text (using Neovim configured above via $VISUAL)
 # export EDITOR='mate -w'
