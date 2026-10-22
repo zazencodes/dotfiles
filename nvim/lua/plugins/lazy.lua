@@ -101,11 +101,15 @@ require('lazy').setup({
   {
     "epwalsh/obsidian.nvim",
     version = "*",
-    lazy = true,
-    ft = "markdown",
+    -- only load for files inside the vault
+    event = {
+      "BufReadPre /Users/alex/obsidian/AzathHouse/*",
+      "BufNewFile /Users/alex/obsidian/AzathHouse/*",
+    },
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+    config = function() require('plugins.obsidian') end,
   },
 
   {

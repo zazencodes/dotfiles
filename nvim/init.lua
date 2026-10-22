@@ -6,7 +6,6 @@ if not vim.g.vscode then
   require('plugins.tele')
   require('plugins.treesitter')
   require('plugins.lsp')
-  require('plugins.obsidian')
   require('plugins.zenmode')
   require('plugins.ark')
   require('plugins.keymaps')
