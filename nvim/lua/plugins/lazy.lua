@@ -99,7 +99,7 @@ require('lazy').setup({
   -- },
 
   {
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
     version = "*",
     -- only load for files inside the vault
     event = {
