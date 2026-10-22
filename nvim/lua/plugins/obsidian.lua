@@ -1,3 +1,6 @@
+-- Obsidian Bases are YAML; :BaseBoard shows their base-board view
+vim.filetype.add({ extension = { base = "yaml" } })
+
 require("obsidian").setup({
   legacy_commands = false,
   workspaces = {
