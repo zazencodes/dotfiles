@@ -102,6 +102,20 @@ for lsp, settings in pairs(server_settings) do
   vim.lsp.config(lsp, { settings = settings })
 end
 
+-- nvb notebook cells (notebook.ipynb.<key>.py) are linted one cell at a time, so names
+-- imported or defined in another cell would show as unused (F401) or undefined (F821)
+vim.lsp.config('ruff', {
+  init_options = {
+    settings = {
+      configuration = {
+        lint = {
+          ['per-file-ignores'] = { ['*.ipynb.*.py'] = { 'F401', 'F821' } },
+        },
+      },
+    },
+  },
+})
+
 for _, lsp in ipairs(servers) do
   vim.lsp.enable(lsp)
 end
