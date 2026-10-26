@@ -43,8 +43,8 @@ alias clear-gemini='unset GEMINI_API_KEY'
 alias load-opencode='export OPENCODE_API_KEY="$(cat ~/.secrets/opencode)"'
 alias clear-opencode='unset OPENCODE_API_KEY'
 
-alias load-ninerouter='export NINEROUTER_API_KEY="$(cat ~/.secrets/9router)"'
-alias clear-ninerouter='unset NINEROUTER_API_KEY'
+alias load-typesafe='export TYPESAFE_API_KEY="$(cat ~/.secrets/typesafe)"'
+alias clear-typesafe='unset TYPESAFE_API_KEY'
 
 # Scoped secret runner
 with-secrets() {
@@ -90,7 +90,7 @@ with-secrets() {
 
 
 # AI cli shortcuts
-alias pi='with-secrets OPENCODE_API_KEY NINEROUTER_API_KEY -- pi'
+alias pi='with-secrets OPENCODE_API_KEY -- pi'
 alias aicmd='with-secrets OPENAI_API_KEY -- aicmd'
 alias aiq='npx -y quota-axi --tui --allow-keychain-prompt'
 
