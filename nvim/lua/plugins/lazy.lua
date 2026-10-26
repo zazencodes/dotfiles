@@ -572,7 +572,7 @@ require('lazy').setup({
 
   { dir = "~/pro/ark-nvim-ai-harness-bridge" },
 
-  -- Obsidian Base Board kanban views; loads only when :BaseBoard runs
-  { dir = "~/pro/base-board.nvim", cmd = "BaseBoard" },
+  -- Obsidian Base Board kanban views; board .base files open as boards
+  { dir = "~/pro/base-board.nvim" },
 })
 

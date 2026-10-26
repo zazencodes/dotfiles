@@ -1,4 +1,4 @@
--- Obsidian Bases are YAML; :BaseBoard shows their base-board view
+-- Obsidian Bases are YAML; :BaseBoard toggles their base-board view
 vim.filetype.add({ extension = { base = "yaml" } })
 
 require("obsidian").setup({
