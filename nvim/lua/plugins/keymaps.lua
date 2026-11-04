@@ -1,4 +1,7 @@
 -- telescope
+vim.keymap.set("n", "<leader>fa", function()
+  require('telescope').extensions.tmux_agent_plane.agents()
+end, { desc = "Find agent sessions" })
 vim.keymap.set("n", "<leader>fs", ":Telescope find_files<cr>") -- search project
 vim.keymap.set("n", "<leader>fp", ":Telescope git_files<cr>")  -- search git
 vim.keymap.set("n", "<leader>fo", ":Telescope oldfiles<cr>")   -- search old files

@@ -372,6 +372,11 @@ require('lazy').setup({
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
+  {
+    dir = vim.fn.expand("~/pro/tmux-agent-plane/extensions/nvim"),
+    name = "tmux-agent-plane.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+  },
   { 'nvim-telescope/telescope-symbols.nvim' },
   { 'nvim-telescope/telescope-ui-select.nvim' }, -- vim.ui.select via Telescope (e.g. :ArkHarness)
 

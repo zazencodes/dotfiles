@@ -38,6 +38,7 @@ require('telescope').setup {
   },
 }
 require('telescope').load_extension('ui-select')
+require('telescope').load_extension('tmux_agent_plane')
 
 -- vim.keymap.set("n", "<Leader>sn", "<CMD>lua require('telescope').extensions.notify.notify()<CR>", silent)
 
