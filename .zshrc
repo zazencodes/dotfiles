@@ -43,6 +43,9 @@ alias clear-gemini='unset GEMINI_API_KEY'
 alias load-opencode='export OPENCODE_API_KEY="$(cat ~/.secrets/opencode)"'
 alias clear-opencode='unset OPENCODE_API_KEY'
 
+alias load-serpapi='export SERPAPI_KEY="$(cat ~/.secrets/serpapi)"'
+alias clear-serpapi='unset SERPAPI_KEY'
+
 alias load-ninerouter='export NINEROUTER_API_KEY="$(cat ~/.secrets/9router)"'
 alias clear-ninerouter='unset NINEROUTER_API_KEY'
 

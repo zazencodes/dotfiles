@@ -22,7 +22,7 @@ This directory holds local environment credentials and API tokens. The secret va
    ```
 4. Create individual secret files for on-demand provider keys:
    ```bash
-   touch ~/.secrets/openai ~/.secrets/anthropic ~/.secrets/gemini ~/.secrets/opencode
+   touch ~/.secrets/openai ~/.secrets/anthropic ~/.secrets/gemini ~/.secrets/opencode ~/.secrets/serpapi
    chmod 600 ~/.secrets/*
    ```
 
@@ -34,7 +34,8 @@ This directory holds local environment credentials and API tokens. The secret va
 ├── openai      # Raw key for OPENAI_API_KEY
 ├── anthropic   # Raw key for ANTHROPIC_API_KEY
 ├── gemini      # Raw key for GEMINI_API_KEY
-└── opencode    # Raw key for OPENCODE_API_KEY
+├── opencode    # Raw key for OPENCODE_API_KEY
+└── serpapi     # Raw key for SERPAPI_KEY
 ```
 
 ## Shell Commands (`~/.zshrc`)
@@ -46,6 +47,7 @@ This directory holds local environment credentials and API tokens. The secret va
 | Anthropic | `load-anthropic` | `clear-anthropic` | `ANTHROPIC_API_KEY` |
 | Gemini | `load-gemini` | `clear-gemini` | `GEMINI_API_KEY` |
 | OpenCode | `load-opencode` | `clear-opencode` | `OPENCODE_API_KEY` |
+| SerpApi | `load-serpapi` | `clear-serpapi` | `SERPAPI_KEY` |
 
 ### Dynamic Scoped Secret Runner
 Use `with-secrets` to pass any number of environment variables dynamically to a command subprocess without modifying your parent shell environment:
@@ -68,3 +70,20 @@ with-secrets ANTHROPIC_API_KEY OPENAI_API_KEY -- aicmd
 
 ### Aliases (`~/.zshrc`)
 - **`pi`**: Aliased to `with-secrets OPENCODE_API_KEY -- pi`.
+
+### SerpApi
+
+Store the raw API key in `~/.secrets/serpapi` and restrict access with
+`chmod 600 ~/.secrets/serpapi`. Open a new terminal or run `source ~/.zshrc`
+after updating the shell configuration.
+
+```bash
+# Make the key available to commands in this shell
+load-serpapi
+
+# Remove it from this shell
+clear-serpapi
+
+# Pass the key to one command (for example, an installed SerpApi CLI)
+with-secrets SERPAPI_KEY -- serpapi search engine=google_light q="Toronto weather"
+```
