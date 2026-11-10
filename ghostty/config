@@ -38,3 +38,6 @@ keybind = cmd+s=text:\x1b[CmdS~
 # tmux-agent-plane: previous/next agent (tmux C-M-k / C-M-j)
 keybind = ctrl+shift+k=text:\x1b\x0b
 keybind = ctrl+shift+j=text:\x1b\x0a
+# tmux-agent-plane: into/out of the sidebar (tmux C-M-h / C-M-l)
+keybind = ctrl+shift+h=text:\x1b\x08
+keybind = ctrl+shift+l=text:\x1b\x0c
