@@ -26,6 +26,9 @@ ln -s ~/dotfiles/hammerspoon/init.lua ~/.hammerspoon/init.lua
 mkdir -p ~/.secrets
 ln -s ~/dotfiles/secrets/README.md ~/.secrets/README.md
 
+# private aliases (gitignored, machine-local; copy over by hand if wanted)
+touch ~/dotfiles/.zshrc.private
+
 # llm cli tool templates
 # Do not run this until after you have installed llm
 rm -rf ~/Library/Application\ Support/io.datasette.llm/templates # delete if exists

@@ -24,6 +24,7 @@ This repository stores configuration files centrally and symlinks them to their 
 ### Shell and Terminal Multiplexing
 - **`.zshrc`**: The primary Zsh shell configuration, handling aliases, environment variables, initialization of tools, and loading credentials.
   - Baseline secrets are loaded globally from `~/.secrets/global.sh`.
+  - Private aliases live in `.zshrc.private`, which `.zshrc` sources if it exists. It is gitignored and exists only on Alex's Mac, so it isn't in this public repo and doesn't carry over to a new machine. Put any alias that names a client or private project there, never in `.zshrc`.
   - On-demand provider API keys (`openai`, `anthropic`, `gemini`, `opencode`, `serpapi`) live in `~/.secrets/` and are toggled via `load-<provider>` and `clear-<provider>` aliases, or scoped to a single command via `with-secrets VAR1 [VAR2...] -- <cmd>` (e.g. `pi` is wrapped with `with-secrets OPENCODE_API_KEY -- pi`).
 - **`.p10k.zsh`**: Powerlevel10k theme configuration for styling the Zsh prompt.
 - **`.tmux.conf`**: Configuration for tmux, optimizing keybinds, status bar aesthetics, and plugins.
