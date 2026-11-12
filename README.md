@@ -35,6 +35,15 @@ rm -rf ~/Library/Application\ Support/io.datasette.llm/templates # delete if exi
 ln -s ~/dotfiles/llm/templates ~/Library/Application\ Support/io.datasette.llm
 ```
 
+## Private zsh aliases (`.zshrc.private`)
+
+This repo is public, so aliases that name clients or private projects live in `~/dotfiles/.zshrc.private` instead of `.zshrc`.
+
+- `.zshrc` sources it near the Obsidian aliases: `[[ -f $HOME/dotfiles/.zshrc.private ]] && source $HOME/dotfiles/.zshrc.private`.
+- It's listed in `.gitignore`, so git never commits or pushes it.
+- It exists only on this Mac. A fresh clone won't have it; copy it across by hand if you want the same aliases on another machine.
+- To add one, append a line such as `alias o-example='cd "$HOME/path/to/dir"'`, then run `source ~/.zshrc`.
+
 ## `/bin`
 
 Bash scripts which are intended to be symlinked with `~/bin`
