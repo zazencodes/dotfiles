@@ -199,8 +199,9 @@ dots() {
   nvim
 }
 
-# Obsidian (AzathHouse vault)
+# Obsidian vaults: AzathHouse (personal), StarvaldDemelain (business)
 alias oo='cd $HOME/obsidian/AzathHouse'
+alias ob='cd $HOME/obsidian/StarvaldDemelain'
 alias o-cheat='cd "$HOME/obsidian/AzathHouse/Areas/SWE/Cheat Sheets"'
 alias o-canvas='cd $HOME/obsidian/ZazenCodesCanvas'
 alias oc='cd $HOME/obsidian/Consulting'
