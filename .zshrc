@@ -203,6 +203,12 @@ dots() {
 alias oo='cd $HOME/obsidian/AzathHouse'
 alias o-cheat='cd "$HOME/obsidian/AzathHouse/Areas/SWE/Cheat Sheets"'
 alias o-canvas='cd $HOME/obsidian/ZazenCodesCanvas'
+alias oc='cd $HOME/obsidian/Consulting'
+
+# Private aliases: ~/dotfiles/.zshrc.private is gitignored and exists only on
+# this machine. Put anything that names clients or private projects there. It
+# is not in the repo, so it does not carry over to a new machine.
+[[ -f $HOME/dotfiles/.zshrc.private ]] && source $HOME/dotfiles/.zshrc.private
 
 # ------------------------------------------------------------------------------
 # HISTORICAL CONTEXT:
